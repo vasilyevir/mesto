@@ -1,0 +1,14 @@
+.Profile__intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 30px;
+}
+
+@media (max-width: 540px){
+    .Profile__intro{
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+    }
+}
