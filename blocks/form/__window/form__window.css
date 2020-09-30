@@ -1,0 +1,8 @@
+.form__window{
+    position: relative;
+    margin: auto;
+    width: 35%;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 41px 330px;
+}

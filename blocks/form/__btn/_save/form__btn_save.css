@@ -1,0 +1,10 @@
+.form__btn_save{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #000000; 
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+}

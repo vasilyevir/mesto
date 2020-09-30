@@ -1,0 +1,12 @@
+.form__list{
+    display: flex;
+    flex-direction: column;
+    height: 330px;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    grid-column: 1/2;
+}

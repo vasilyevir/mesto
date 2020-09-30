@@ -1,0 +1,11 @@
+.form__btn_close{
+    background-image: url(../../../../images/Close\ Icon.png);
+    width: 40.7px;
+    height: 40.7px;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    grid-column: 2/3;
+}

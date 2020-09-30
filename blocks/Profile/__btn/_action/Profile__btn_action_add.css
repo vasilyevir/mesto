@@ -1,15 +1,15 @@
-.profile__AddButton{
+.Profile__btn_action_add{
     width: 150px;
     height: 50px;
     border: 1px solid #fff;
     background-color: #000;
-    background-image: url(../../../images/Крест.png);
+    background-image: url(../../../../images/Крест.png);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 @media (max-width: 924px){
-    .profile__AddButton{
+    .Profile__btn_action_add{
         width: 75%;
         margin: 20px auto;
     }
