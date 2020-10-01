@@ -41,3 +41,11 @@ function formSubmitHandler (evt) {
 }
 
 form.addEventListener('submit', formSubmitHandler);
+
+function onClickFormBackground(event) {
+	if (event.target === event.currentTarget) {
+		formToggle();
+	}
+}
+
+form.addEventListener('click', onClickFormBackground);

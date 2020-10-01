@@ -14,3 +14,7 @@
         margin: 20px auto;
     }
 }
+
+.Profile__btn_action_add:hover{
+    opacity: 0.6;
+}

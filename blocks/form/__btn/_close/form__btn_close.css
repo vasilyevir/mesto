@@ -9,3 +9,7 @@
     border: none;
     grid-column: 2/3;
 }
+
+.form__btn_close:hover{
+    opacity: 0.6;
+}
