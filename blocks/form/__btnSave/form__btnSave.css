@@ -1,16 +1,17 @@
-.form__btn_save{
-    width: 80%;
+.form__btnSave{
+    width: 82.5%;
     margin: 0 auto;
     background-color: #000000; 
+    border-radius: 2px;
     height: 50px;
     color: #fff;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
     border-radius: 2px;
+    cursor: pointer;
 }
 
-.form__btn_save:hover{
+.form__btnSave:hover{
     opacity: 0.8;
-    cursor: pointer;
 }

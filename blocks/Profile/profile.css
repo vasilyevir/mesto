@@ -1,4 +1,4 @@
-.Profile{
+.profile{
     display: flex;
     width: 70%;
     flex-direction: row;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 924px){
-    .Profile{
+    .profile{
         flex-direction: column;
     }
 }

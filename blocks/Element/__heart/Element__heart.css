@@ -1,8 +1,10 @@
 .Element__heart{
-    background-image: url(../../../images/heart.png);
+    background-image: url(../../../images/heart.svg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 21px;
     height: 19px;
+    border: none;
+    cursor: pointer;
 }

@@ -1,51 +1,35 @@
-console.log('Hello world')
 let form = document.querySelector('.form');
-let name = document.querySelector('.Profile__name');
-let nameChange = document.querySelector('.form__name');
+let name = document.querySelector('.profile__name');
+let nameChange = document.querySelector('.form__input_value_name');
 let job = document.querySelector('.profile__job');
-let jobChange = document.querySelector('.form__job');
-let editButton = document.querySelector('.Profile__btn_action_edit');
-let closeButton = document.querySelector('.form__btn_close');
-let saveButton = document.querySelector('.form__btn_save');
+let jobChange = document.querySelector('.form__input_value_job');
+let editButton = document.querySelector('.profile__btnEdit');
+let closeButton = document.querySelector('.form__btnClose');
 
-function formToggle(){
+
+function formToggleOpen(){
     form.classList.toggle('form_is-opened');
-    nameChange.setAttribute('value', name.innerHTML);
-    jobChange.setAttribute('value', job.innerHTML);
+    nameChange.setAttribute('value', name.textContent);
+    jobChange.setAttribute('value', job.textContent);
 }
-editButton.addEventListener('click', formToggle);
-closeButton.addEventListener('click', formToggle);
+function formToggleClose() {
+	form.classList.toggle('form_is-opened');
+}
 
-let formElement = document.querySelector('form__list');
 function formSubmitHandler (evt) {
 	evt.preventDefault(); 
-	
-	let nameChange = form.querySelector('.form__name');
-	let jobChange = form.querySelector('.form__job');
-
-
-	let nameChangeValue = nameChange.value;
-	let jobChangeValue = jobChange.value;
-
-
-	let name = document.querySelector('.Profile__name');
-	let job = document.querySelector('.profile__job');
-
-
-	name.innerHTML = nameChangeValue;
-	job.innerHTML = jobChangeValue;
-
-
-	formToggle();
-
+	name.textContent = nameChange.Value;
+	job.textContent = jobChange.Value;
+	formToggleClose();
 }
 
-form.addEventListener('submit', formSubmitHandler);
 
 function onClickFormBackground(event) {
 	if (event.target === event.currentTarget) {
-		formToggle();
+		formToggleClose();
 	}
 }
 
-form.addEventListener('click', onClickFormBackground);
+editButton.addEventListener('click', formToggleOpen);
+closeButton.addEventListener('click', formToggleClose);
+form.addEventListener('submit', formSubmitHandler);

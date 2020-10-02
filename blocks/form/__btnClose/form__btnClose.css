@@ -1,5 +1,5 @@
-.form__btn_close{
-    background-image: url(../../../../images/Close\ Icon.png);
+.form__btnClose{
+    background-image: url(../../../images/Close\ Icon.svg);
     width: 40.7px;
     height: 40.7px;
     background-size: cover;
@@ -8,8 +8,9 @@
     background-position: center;
     border: none;
     grid-column: 2/3;
+    cursor: pointer;
 }
 
-.form__btn_close:hover{
+.form__btnClose:hover{
     opacity: 0.6;
 }

@@ -1,12 +1,13 @@
-.Profile__intro{
+.profile__intro{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     margin-left: 30px;
+    max-width: 336px;
 }
 
 @media (max-width: 540px){
-    .Profile__intro{
+    .profile__intro{
         margin: 0;
         justify-content: center;
         align-items: center;

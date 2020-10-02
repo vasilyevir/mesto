@@ -1,8 +1,14 @@
 .form__window{
     position: relative;
-    margin: auto;
-    width: 35%;
+    margin: 195px auto;
+    width: 430px;
     display: grid;
     grid-template-columns: 90% 10%;
     grid-template-rows: 41px 330px;
+}
+
+@media (max-width: 478px){
+    .form__window{
+        width: 90%;
+    }
 }

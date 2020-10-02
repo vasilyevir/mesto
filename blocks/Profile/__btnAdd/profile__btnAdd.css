@@ -1,20 +1,22 @@
-.Profile__btn_action_add{
+.profile__btnAdd{
     width: 150px;
     height: 50px;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
+    border-radius: 2px;
     background-color: #000;
-    background-image: url(../../../../images/Крест.png);
+    background-image: url(../../../images/Крест.png);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 @media (max-width: 924px){
-    .Profile__btn_action_add{
+    .profile__btnAdd{
         width: 75%;
         margin: 20px auto;
     }
 }
 
-.Profile__btn_action_add:hover{
+.profile__btnAdd:hover{
     opacity: 0.6;
 }
