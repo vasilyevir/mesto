@@ -7,3 +7,10 @@
     width: 80%;
     margin: 0 auto;
 }
+
+@media (max-width: 540px){
+    .form__text{
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

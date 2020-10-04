@@ -5,3 +5,13 @@
     height: 34px;
     padding-bottom: 40px;
 }
+
+@media (max-width: 540px){
+    .logo{
+        width: 103px;
+        height: 25px;
+        background-size: contain;
+        margin-left: 27px;
+        padding: 0;
+    }
+}

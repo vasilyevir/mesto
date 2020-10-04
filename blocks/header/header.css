@@ -3,3 +3,14 @@
     margin: 45px auto 40px;
     border-bottom: solid 1px rgba(84, 84, 84, 0.7);
 }
+
+@media (max-width: 540px){
+    .header{
+        width: 100%;
+        margin: 0 auto 38px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 84px;
+    }
+}

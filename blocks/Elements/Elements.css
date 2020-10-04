@@ -1,4 +1,4 @@
-.Elements{
+.elements{
     width: 70%;
     display: flex;
     flex-direction: row;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 834px){
-    .Elements{
+    .elements{
         justify-content: center;
     }
 }
