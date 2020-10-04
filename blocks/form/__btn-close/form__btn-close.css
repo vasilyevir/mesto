@@ -1,8 +1,8 @@
 .form__btn-close{
     background-image: url(../../../images/Close\ Icon.svg);
-    width: 40.7px;
-    height: 40.7px;
-    background-size: cover;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
     background-color: rgba(255, 255, 255, 0);
     background-repeat: no-repeat;
     background-position: center;
@@ -19,7 +19,6 @@
     .form__btn-close{
         width: 26px;
         height: 26px;
-        background-size: contain;
         margin-bottom: 14px;
     }
 }

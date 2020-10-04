@@ -17,6 +17,11 @@
     }
 }
 
+@media (max-width: 540px){
+    .profile__btn-add{
+        margin: 0px auto;
+    }
+}
 .profile__btn-add:hover{
     opacity: 0.6;
 }

@@ -5,3 +5,8 @@
     align-items: center;
     margin: 0;
 }
+@media (max-width: 540px){
+    .profile__top-row{
+        margin: 40px auto 14px;
+    }
+}

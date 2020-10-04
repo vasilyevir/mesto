@@ -1,5 +1,4 @@
 let form = document.querySelector('.form');
-let formElement = document.querySelector('.form__list')
 let name = document.querySelector('.profile__name');
 let nameChange = document.querySelector('.form__input_value_name');
 let job = document.querySelector('.profile__job');
