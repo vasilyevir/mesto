@@ -21,10 +21,15 @@
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input/_value/form__input_value_job.css);
 @import url(../blocks/form/__input/_value/form__input_value_name.css);
+@import url(../blocks/form/__input/_value/form__input_value_name-image.css);
+@import url(../blocks/form/__input/_value/form__input_value_url.css);
 @import url(../blocks/form/_is-opened/form_is-opened.css);
+@import url(../blocks/form/_Add/form_Add.css);
+@import url(../blocks/form/_Edit/form_Edit.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__btn-delete/element__btn-delete.css);
 @import url(../blocks/element/__footer/element__footer.css);
 @import url(../blocks/element/__text/element__text.css);
 @import url(../blocks/element/__heart/element__heart.css);

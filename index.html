@@ -23,66 +23,49 @@
         </div>
         <button class="profile__btn-add" type="button"></button>
     </section>
-    <section class="form">
+    <section class="form form_edit">
         <div class="form__window"> 
-            <button class="form__btn-close" type="button"></button>
+            <button class="form__btn-close form__btn-close_edit" type="button"></button>
             <form class="form__list" name="form">
                 <h2 class="form__text">Редактировать профиль</h2>
                 <input type="text" class="form__input form__input_value_name" name="name" value="">
                 <input type="text" class="form__input form__input_value_job" name="job" value="">
-                <button class="form__btn-save" value="Сохранить" type="submit">
+                <button class="form__btn-save" value="Сохранить" type="submit" name="closeEdit">
                     Сохранить
                 </button>
             </form>
         </div>
     </section>
+    <section class="form form_add">
+        <div class="form__window"> 
+            <button class="form__btn-close form__btn-close_add" type="button"></button>
+            <form class="form__list" name="form">
+                <h2 class="form__text">Новое место</h2>
+                <input type="text" class="form__input form__input_value_name-image" name="name" value="" placeholder="Название">
+                <input type="url" class="form__input form__input_value_url" name="job" value="" placeholder="Ссылка на картинку">
+                <button class="form__btn-save" value="" type="submit">
+                    Создать
+                </button>
+            </form>
+        </div>
+    </section>
     <section class="elements">
-        <div class="element">
-            <img src="./images/Karachaevsk.png" alt="Карачаевск" class="element__image">
-            <div class="element__footer">
-                <h2 class="element__text">Карачаевск</h2>
-                <button class="element__heart" type="button"></button>
-            </div>
-        </div>
-        <div class="element">
-            <img src="./images/Elbrus.png" alt="Эльбрус" class="element__image">
-            <div class="element__footer">
-                <h2 class="element__text">Гора Эльбрус</h2>
-                <button class="element__heart" type="button"></button>
-            </div>
-        </div>
-        <div class="element">
-            <img src="./images/Karachaevo.png" alt="Домбай" class="element__image">
-            <div class="element__footer">
-                <h2 class="element__text">Домбай</h2>
-                <button class="element__heart" type="button"></button>
-            </div>
-        </div>
-        <div class="element">
-            <img src="./images/Elbrus.png" alt="Эльбрус" class="element__image">
-            <div class="element__footer">
-                <h2 class="element__text">Гора Эльбрус</h2>
-                <button class="element__heart" type="button"></button>
-            </div>
-        </div>
-        <div class="element">
-            <img src="./images/Karachaevo.png" alt="Домбай" class="element__image">
-            <div class="element__footer">
-                <h2 class="element__text">Домбай</h2>
-                <button class="element__heart" type="button"></button>
-            </div>
-        </div>
-        <div class="element">
-            <img src="./images/Karachaevsk.png" alt="Карачаевск" class="element__image">
-            <div class="element__footer">
-                <h2 class="element__text">Карачаево-Черкессия</h2>
-                <button class="element__heart" type="button"></button>
-            </div>
-        </div>
     </section>
     <footer class="footer">
         <p class="footer__text">&copy;2020 Mesto Russia</p>
     </footer>
+
+    <template id="elements">
+        <div class="element">
+            <img src="" class="element__image">
+            <button class="element__btn-delete" type="button"></button>
+            <div class="element__footer">
+                <h2 class="element__text"></h2>
+                <button class="element__heart" type="button"></button>
+            </div>
+        </div>
+    </template>
+
     <script src="./scripts/index.js"></script>
 </body>
 </html>
