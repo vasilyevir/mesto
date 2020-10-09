@@ -1,4 +1,3 @@
-<<<<<<< HEAD:blocks/Element/__heart/Element__heart.css
 .element__heart{
     background-image: url(../../../images/heart.svg);
     background-size: cover;
@@ -14,20 +13,4 @@
 
 .element__heart:hover{
     opacity: 0.6;
-=======
-.element__heart{
-    background-image: url(../../../images/heart.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 21px;
-    height: 19px;
-    border: none;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.element__heart:hover{
-    opacity: 0.6;
->>>>>>> d6e8b192e2c775207739c66d555ca205b4ba14aa:blocks/element/__heart/element__heart.css
 }

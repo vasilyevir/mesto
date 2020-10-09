@@ -48,13 +48,7 @@ let elements = document.querySelector('.elements');
 
 
 
-initialCards.forEach( function addCard(element){
-    const cardTemplate = document.querySelector('#elements').content;
-    const card = cardTemplate.cloneNode(true);	
-    card.querySelector('.element__text').textContent = element.name;
-    card.querySelector('.element__image').src = element.link;
-    elements.append(card);
-})
+
 
 
 
