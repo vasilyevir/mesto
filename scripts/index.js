@@ -39,17 +39,31 @@ let closeButtonAdd = formAdd.querySelector('.form__btn-close_add');
 let addButton = document.querySelector('.profile__btn-add');
 let elements = document.querySelector('.elements');
 let template = document.querySelector('#elements');
-let addCard = document.querySelector('#addButton')
+let addCard = document.querySelector('#addButton');
+
 
 const renderList = () => {
         const items = initialCards.map(element => getItems(element))
         elements.append(...items)
 }
 
+const removeCard = (event) => {
+    event.target.closest('.element').remove();
+}
+
+const hearttoggle = (element) =>{
+    element.target.closest('.element__heart').classList.toggle('element__heart_active')
+}
+
 const getItems = (data) => {
     const card = template.content.cloneNode(true);
     card.querySelector('.element__text').textContent = data.name;
     card.querySelector('.element__image').src = data.link;
+    const deleteButton = card.querySelector('.element__btn-delete');
+    const heart = card.querySelector('.element__heart') 
+    heart.addEventListener('click', hearttoggle)
+    deleteButton.addEventListener('click', removeCard)
+
     return card;
 }
 
