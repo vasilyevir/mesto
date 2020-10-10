@@ -29,28 +29,39 @@ let formAdd = document.querySelector('.form_add');
 let formEdit = document.querySelector('.form_edit');
 let name = document.querySelector('.profile__name');
 let nameChange = document.querySelector('.form__input_value_name');
-let nameImage = document.querySelector('.form__input_value_name-image')
+let nameImage = document.querySelector('.form__input_value_name-image');
 let job = document.querySelector('.profile__job');
 let urlImage = document.querySelector('.form__input_value_url')
 let jobChange = document.querySelector('.form__input_value_job');
 let editButton = document.querySelector('.profile__btn-edit');
 let closeButtonEdit = formEdit.querySelector('.form__btn-close_edit');
 let closeButtonAdd = formAdd.querySelector('.form__btn-close_add');
-let addButton = document.querySelector('.profile__btn-add')
+let addButton = document.querySelector('.profile__btn-add');
 let elements = document.querySelector('.elements');
-//const deleteButton = document.querySelector('.element__btn-delete');
+let template = document.querySelector('#elements');
+let addCard = document.querySelector('#addButton')
 
+const renderList = () => {
+        const items = initialCards.map(element => getItems(element))
+        elements.append(...items)
+}
 
-//deleteButton.addEventListener('click', function () {
-//  const listItem = deleteButton.closest('.element');
-  //listItem.remove();
-//}); 
+const getItems = (data) => {
+    const card = template.content.cloneNode(true);
+    card.querySelector('.element__text').textContent = data.name;
+    card.querySelector('.element__image').src = data.link;
+    return card;
+}
 
-
-
-
-
-
+function sumbitCard(event) {
+    event.preventDefault();
+    let perem = {}
+    perem.name = nameImage.value;
+    perem.link = urlImage.value; 
+    const item = getItems(perem)
+    elements.prepend(item);
+    formAddToggle()
+}
 
 
 function formEditToggleOpen(){
@@ -90,31 +101,10 @@ function onClickFormBackgroundAdd(event) {
 	}
 }
 
-let newMassiv = [];
-function addElement(event) {
-    event.preventDefault(); 
-    let qwe = document.querySelectorAll('.element');
-    qwe.forEach(function(item) {
-        item.remove()
-    })
-    let item = {};
-    item.name = nameImage.value;
-    item.link = urlImage.value;
-    initialCards.unshift(item);
-    newMassiv = initialCards;
-    formAddToggle();
-    newMassiv.forEach( function addCard(element){
-        const cardTemplate = document.querySelector('#elements').content;
-        const card = cardTemplate.cloneNode(true);	
-        card.querySelector('.element__text').textContent = element.name;
-        card.querySelector('.element__image').src = element.link;
-        elements.append(card);
-    })
-}
 
 
 
-
+renderList();
 editButton.addEventListener('click', formEditToggleOpen);
 closeButtonEdit.addEventListener('click', formEditToggleClose);
 closeButtonAdd.addEventListener('click', formAddToggle);
@@ -122,4 +112,4 @@ addButton.addEventListener('click', formAddToggle);
 formEdit.addEventListener('submit', formSubmitHandler);
 formEdit.addEventListener('click', onClickFormBackgroundEdit);
 formAdd.addEventListener('click', onClickFormBackgroundAdd);
-formAdd.addEventListener('submit', addElement)
+formAdd.addEventListener('submit', sumbitCard)
