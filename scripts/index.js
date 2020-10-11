@@ -40,6 +40,8 @@ let addButton = document.querySelector('.profile__btn-add');
 let elements = document.querySelector('.elements');
 let template = document.querySelector('#elements');
 let addCard = document.querySelector('#addButton');
+let popup = document.querySelector('#popup-image');
+let body = document.querySelector('.root');
 
 
 const renderList = () => {
@@ -55,12 +57,42 @@ const hearttoggle = (element) =>{
     element.target.closest('.element__heart').classList.toggle('element__heart_active')
 }
 
+function onClickFormBackgroundPopup(event) {
+    if (event.target !== event.currentTarget) {
+		return;
+	} else {
+	closePopup();
+	}
+}
+
+const closePopup = () =>{
+    const popupImage = document.querySelector('.popup-image')
+    body.classList.toggle('root_overflow')
+    popupImage.remove()
+}
+
+const popupToggle = (element) =>{
+    const popupOpen = popup.content.cloneNode(true);
+    popupOpen.querySelector('.popup-image__image').src = element.target.closest('.element__image').src
+    popupOpen.querySelector('.popup-image__text').textContent = element.target.closest('.element').querySelector('.element__text').textContent
+    const popupImage = popupOpen.querySelector('.popup-image');
+    const popupCloseBtn = popupOpen.querySelector('.form__btn-close')
+    popupImage.classList.toggle('popup-image_active');
+    body.prepend(popupOpen)
+    popupCloseBtn.addEventListener('click', closePopup)
+    popupOpen.addEventListener('click', onClickFormBackgroundPopup)
+    body.classList.toggle('root_overflow')
+}
+
 const getItems = (data) => {
     const card = template.content.cloneNode(true);
     card.querySelector('.element__text').textContent = data.name;
     card.querySelector('.element__image').src = data.link;
     const deleteButton = card.querySelector('.element__btn-delete');
     const heart = card.querySelector('.element__heart') 
+    const elementImage = card.querySelector('.element__image');
+
+    elementImage.addEventListener('click', popupToggle)
     heart.addEventListener('click', hearttoggle)
     deleteButton.addEventListener('click', removeCard)
 
