@@ -44,6 +44,7 @@ const popup = document.querySelector('.popup-image');
 const body = document.querySelector('.root');
 const popupText = popup.querySelector('.popup-image__text');
 const popupImage = popup.querySelector('.popup-image__image');
+const popupCloseBtn = popup.querySelector('.form__btn-close');
 
 const renderList = () => {
         const items = initialCards.map(element => getItems(element))
@@ -74,10 +75,7 @@ const closePopup = () =>{
 const popupToggle = (element) =>{
     popupImage.src = element.target.closest('.element__image').src
     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
-    const popupCloseBtn = popup.querySelector('.form__btn-close')
     popup.classList.toggle('popup-image_active');
-    popupCloseBtn.addEventListener('click', closePopup)
-    popup.addEventListener('click', onClickFormBackgroundPopup)
     body.classList.toggle('root_overflow')
 }
 
@@ -99,10 +97,10 @@ const getItems = (data) => {
 
 function sumbitCard(event) {
     event.preventDefault();
-    const perem = {}
-    perem.name = nameImage.value;
-    perem.link = urlImage.value; 
-    const item = getItems(perem)
+    const data = {}
+    data.name = nameImage.value;
+    data.link = urlImage.value; 
+    const item = getItems(data)
     elements.prepend(item);
     nameImage.value = ''
     urlImage.value = ''
@@ -159,3 +157,5 @@ formEdit.addEventListener('submit', formSubmitHandler);
 formEdit.addEventListener('click', onClickFormBackgroundEdit);
 formAdd.addEventListener('click', onClickFormBackgroundAdd);
 formAdd.addEventListener('submit', sumbitCard)
+popupCloseBtn.addEventListener('click', closePopup)
+popup.addEventListener('click', onClickFormBackgroundPopup)
