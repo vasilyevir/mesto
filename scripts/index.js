@@ -25,24 +25,25 @@ const initialCards = [
     }
 ];
 
-let formAdd = document.querySelector('.form_add');
-let formEdit = document.querySelector('.form_edit');
-let name = document.querySelector('.profile__name');
-let nameChange = document.querySelector('.form__input_value_name');
-let nameImage = document.querySelector('.form__input_value_name-image');
-let job = document.querySelector('.profile__job');
-let urlImage = document.querySelector('.form__input_value_url')
-let jobChange = document.querySelector('.form__input_value_job');
-let editButton = document.querySelector('.profile__btn-edit');
-let closeButtonEdit = formEdit.querySelector('.form__btn-close_edit');
-let closeButtonAdd = formAdd.querySelector('.form__btn-close_add');
-let addButton = document.querySelector('.profile__btn-add');
-let elements = document.querySelector('.elements');
-let template = document.querySelector('#elements');
-let addCard = document.querySelector('#addButton');
-let popup = document.querySelector('#popup-image');
-let body = document.querySelector('.root');
-
+const formAdd = document.querySelector('.form_add');
+const formEdit = document.querySelector('.form_edit');
+const name = document.querySelector('.profile__name');
+const nameChange = document.querySelector('.form__input_value_name');
+const nameImage = document.querySelector('.form__input_value_name-image');
+const job = document.querySelector('.profile__job');
+const urlImage = document.querySelector('.form__input_value_url')
+const jobChange = document.querySelector('.form__input_value_job');
+const editButton = document.querySelector('.profile__btn-edit');
+const closeButtonEdit = formEdit.querySelector('.form__btn-close_edit');
+const closeButtonAdd = formAdd.querySelector('.form__btn-close_add');
+const addButton = document.querySelector('.profile__btn-add');
+const elements = document.querySelector('.elements');
+const template = document.querySelector('#elements');
+const addCard = document.querySelector('#addButton');
+const popup = document.querySelector('.popup-image');
+const body = document.querySelector('.root');
+const popupText = popup.querySelector('.popup-image__text');
+const popupImage = popup.querySelector('.popup-image__image');
 
 const renderList = () => {
         const items = initialCards.map(element => getItems(element))
@@ -53,7 +54,7 @@ const removeCard = (event) => {
     event.target.closest('.element').remove();
 }
 
-const hearttoggle = (element) =>{
+const toggleLike = (element) =>{
     element.target.closest('.element__heart').classList.toggle('element__heart_active')
 }
 
@@ -66,34 +67,31 @@ function onClickFormBackgroundPopup(event) {
 }
 
 const closePopup = () =>{
-    const popupImage = document.querySelector('.popup-image')
     body.classList.toggle('root_overflow')
-    popupImage.remove()
+    popup.classList.toggle('popup-image_active')
 }
 
 const popupToggle = (element) =>{
-    const popupOpen = popup.content.cloneNode(true);
-    popupOpen.querySelector('.popup-image__image').src = element.target.closest('.element__image').src
-    popupOpen.querySelector('.popup-image__text').textContent = element.target.closest('.element').querySelector('.element__text').textContent
-    const popupImage = popupOpen.querySelector('.popup-image');
-    const popupCloseBtn = popupOpen.querySelector('.form__btn-close')
-    popupImage.classList.toggle('popup-image_active');
-    body.prepend(popupOpen)
+    popupImage.src = element.target.closest('.element__image').src
+    popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
+    const popupCloseBtn = popup.querySelector('.form__btn-close')
+    popup.classList.toggle('popup-image_active');
     popupCloseBtn.addEventListener('click', closePopup)
-    popupOpen.addEventListener('click', onClickFormBackgroundPopup)
+    popup.addEventListener('click', onClickFormBackgroundPopup)
     body.classList.toggle('root_overflow')
 }
 
 const getItems = (data) => {
     const card = template.content.cloneNode(true);
     card.querySelector('.element__text').textContent = data.name;
-    card.querySelector('.element__image').src = data.link;
+    const elementImage = card.querySelector('.element__image');
+    elementImage.src = data.link;
     const deleteButton = card.querySelector('.element__btn-delete');
     const heart = card.querySelector('.element__heart') 
-    const elementImage = card.querySelector('.element__image');
+
 
     elementImage.addEventListener('click', popupToggle)
-    heart.addEventListener('click', hearttoggle)
+    heart.addEventListener('click', toggleLike)
     deleteButton.addEventListener('click', removeCard)
 
     return card;
@@ -101,11 +99,13 @@ const getItems = (data) => {
 
 function sumbitCard(event) {
     event.preventDefault();
-    let perem = {}
+    const perem = {}
     perem.name = nameImage.value;
     perem.link = urlImage.value; 
     const item = getItems(perem)
     elements.prepend(item);
+    nameImage.value = ''
+    urlImage.value = ''
     formAddToggle()
 }
 
