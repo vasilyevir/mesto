@@ -145,7 +145,14 @@ function onClickFormBackgroundAdd(event) {
 	}
 }
 
-
+const escClick = (event) =>{        
+    console.log(1);
+    if (!(event.keyCode === '27')){
+        return
+    } else {
+        formEditToggleClose();
+    }
+}
 
 
 renderList();
@@ -159,3 +166,4 @@ formAdd.addEventListener('click', onClickFormBackgroundAdd);
 formAdd.addEventListener('submit', sumbitCard)
 popupCloseBtn.addEventListener('click', closePopup)
 popup.addEventListener('click', onClickFormBackgroundPopup)
+formEdit.addEventListener('keypress', escClick);
