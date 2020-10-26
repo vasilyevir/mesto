@@ -26,10 +26,16 @@
     <section class="form form_edit">
         <div class="form__window"> 
             <button class="form__btn-close form__btn-close_edit" type="button"></button>
-            <form class="form__list" name="form">
+            <form class="form__list form__list_edit" name="form">
                 <h2 class="form__text">Редактировать профиль</h2>
-                <input required minlength="2" maxlength="40" type="text" class="form__input form__input_value_name" name="name" value="">
-                <input required minlength="2" maxlength="200" type="text" class="form__input form__input_value_job" name="job" value="">
+                <div class="form__input-area">    
+                    <input required minlength="2" maxlength="40" type="text" class="form__input form__input_value_name" id="name" name="name" value="" placeholder="Имя">
+                    <span id="name-error" class="form__error"></span>
+                </div>
+                <div class="form__input-area">
+                    <input required minlength="2" maxlength="200" type="text" class="form__input form__input_value_job" id="job" name="job" value="" placeholder="О себе">
+                    <span id="job-error" class="form__error"></span>
+                </div>
                 <button class="form__btn-save" value="Сохранить" type="submit" name="closeEdit">
                     Сохранить
                 </button>
@@ -48,10 +54,16 @@
     <section class="form form_add">
         <div class="form__window"> 
             <button class="form__btn-close form__btn-close_add" type="button"></button>
-            <form class="form__list" name="form">
+            <form class="form__list form__list_add" name="form">
                 <h2 class="form__text">Новое место</h2>
-                <input required minlength="2" maxlength="30" type="text" class="form__input form__input_value_name-image" name="name" value="" placeholder="Название">
-                <input required type="url" class="form__input form__input_value_url" name="job" value="" placeholder="Ссылка на картинку">
+                <div class="form__input-area">
+                    <input required minlength="2" maxlength="30" type="text" class="form__input form__input_value_name-image" name="name-card" id="name-card" value="" placeholder="Название">
+                    <span id="name-card-error" class="form__error"></span>
+                </div>
+                <div class="form__input-area">
+                    <input required type="url" class="form__input form__input_value_url" name="img-card" id="img-card" value="" placeholder="Ссылка на картинку">
+                    <span id="img-card-error" class="form__error"></span>
+                </div>
                 <button class="form__btn-save" value="" type="submit" id="addButton">
                     Создать
                 </button>

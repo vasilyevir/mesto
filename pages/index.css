@@ -28,6 +28,10 @@
 @import url(../blocks/form/_is-opened/form_is-opened.css);
 @import url(../blocks/form/_add/form_add.css);
 @import url(../blocks/form/_edit/form_edit.css);
+@import url(../blocks/form/__input-area/form__input-area.css);
+@import url(../blocks/form/__input/_state/form__input_state_invalid.css);
+@import url(../blocks/form/__error/form__error.css);
+@import url(../blocks/form/__btn-save/_invalid/form__btn-save_invalid.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);

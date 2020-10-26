@@ -45,6 +45,10 @@ const body = document.querySelector('.root');
 const popupText = popup.querySelector('.popup-image__text');
 const popupImage = popup.querySelector('.popup-image__image');
 const popupCloseBtn = popup.querySelector('.form__btn-close');
+let formAddOpen = false;
+let formEditOpen = false;
+let popupOpen = false;
+
 
 const renderList = () => {
         const items = initialCards.map(element => getItems(element))
@@ -63,13 +67,18 @@ function onClickFormBackgroundPopup(event) {
     if (event.target !== event.currentTarget) {
 		return;
 	} else {
-	closePopup();
+    closePopup();
 	}
 }
 
 const closePopup = () =>{
     body.classList.toggle('root_overflow')
     popup.classList.toggle('popup-image_active')
+    if (popupOpen === false) {
+        popupOpen = true;
+    } else {
+        popupOpen = false;
+    }
 }
 
 const popupToggle = (element) =>{
@@ -77,7 +86,13 @@ const popupToggle = (element) =>{
     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
     popup.classList.toggle('popup-image_active');
     body.classList.toggle('root_overflow')
+    if (popupOpen === false) {
+        popupOpen = true;
+    } else {
+        popupOpen = false;
+    }
 }
+
 
 const getItems = (data) => {
     const card = template.content.cloneNode(true);
@@ -111,29 +126,38 @@ function sumbitCard(event) {
 function formEditToggleOpen(){
     nameChange.setAttribute('value', name.textContent);
 	jobChange.setAttribute('value', job.textContent);
-	formEdit.classList.toggle('form_is-opened');
+    formEdit.classList.toggle('form_is-opened');
+    formEditOpen = true;
 }
 
 function formEditToggleClose() {
-	formEdit.classList.toggle('form_is-opened');
+    formEdit.classList.toggle('form_is-opened');
+    formEditOpen = false;
 }
 
 function formAddToggle() {
-	formAdd.classList.toggle('form_is-opened');
+    formAdd.classList.toggle('form_is-opened');
+    if (formAddOpen === false) {
+        formAddOpen = true;
+    } else {
+        formAddOpen = false;
+    }
 }
 
 function formSubmitHandler (event) {
 	event.preventDefault(); 
 	name.textContent = nameChange.value;
 	job.textContent = jobChange.value;
-	formEditToggleClose();
+    formEditToggleClose();
+    formEditOpen = false;
 }
 
 function onClickFormBackgroundEdit(event) {
 	if (event.target !== event.currentTarget) {
 		return;
 	} else {
-	formEditToggleClose();
+    formEditToggleClose();
+    formEditOpen = false;
 	}
 }
 
@@ -141,11 +165,22 @@ function onClickFormBackgroundAdd(event) {
 	if (event.target !== event.currentTarget) {
 		return;
 	} else {
-	formAddToggle();
+    formAddToggle();
 	}
 }
 
-
+function escForm(evt) {
+    if (evt.key === 'Escape') {
+        if (formEditOpen === true) {
+            formEditToggleClose()
+        } else if (formAddOpen === true){
+            formAddToggle()
+        } else if (popupOpen === true){
+            closePopup()
+        }
+    }
+    console.log(formEditOpen, formAddOpen, popupOpen)
+}
 
 
 renderList();
@@ -159,3 +194,4 @@ formAdd.addEventListener('click', onClickFormBackgroundAdd);
 formAdd.addEventListener('submit', sumbitCard)
 popupCloseBtn.addEventListener('click', closePopup)
 popup.addEventListener('click', onClickFormBackgroundPopup)
+document.addEventListener('keydown', escForm)
