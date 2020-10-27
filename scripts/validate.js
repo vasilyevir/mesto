@@ -56,9 +56,9 @@ function enableValidation({inputSelector, formSelector, submitButtonSelector, in
 }
 
 enableValidation({
-    formSelector: '.form__list',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.form__btn-save',
-    inactiveButtonClass: 'form__btn-save_invalid',
-    inputErrorClass: 'form__input_state_invalid'
+    formSelector: '.popup__list',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__btn-save',
+    inactiveButtonClass: 'popup__btn-save_invalid',
+    inputErrorClass: 'popup__input_state_invalid'
 });

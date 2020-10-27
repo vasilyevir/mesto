@@ -25,26 +25,25 @@ const initialCards = [
     }
 ];
 
-const formAdd = document.querySelector('.form_add');
-const formEdit = document.querySelector('.form_edit');
+const formAdd = document.querySelector('.popup_add');
+const formEdit = document.querySelector('.popup_edit');
 const name = document.querySelector('.profile__name');
-const nameChange = document.querySelector('.form__input_value_name');
-const nameImage = document.querySelector('.form__input_value_name-image');
+const nameChange = document.querySelector('.popup__input_value_name');
+const nameImage = document.querySelector('.popup__input_value_name-image');
 const job = document.querySelector('.profile__job');
-const urlImage = document.querySelector('.form__input_value_url')
-const jobChange = document.querySelector('.form__input_value_job');
+const urlImage = document.querySelector('.popup__input_value_url')
+const jobChange = document.querySelector('.popup__input_value_job');
 const editButton = document.querySelector('.profile__btn-edit');
-const closeButtonEdit = formEdit.querySelector('.form__btn-close_edit');
-const closeButtonAdd = formAdd.querySelector('.form__btn-close_add');
+const closeButtonEdit = formEdit.querySelector('.popup__btn-close_edit');
+const closeButtonAdd = formAdd.querySelector('.popup__btn-close_add');
 const addButton = document.querySelector('.profile__btn-add');
 const elements = document.querySelector('.elements');
 const template = document.querySelector('#elements');
 const addCard = document.querySelector('#addButton');
-const popup = document.querySelector('.popup-image');
-const body = document.querySelector('.root');
-const popupText = popup.querySelector('.popup-image__text');
-const popupImage = popup.querySelector('.popup-image__image');
-const popupCloseBtn = popup.querySelector('.form__btn-close');
+const popup = document.querySelector('.popup_card');
+const popupText = popup.querySelector('.popup__text_type_image');
+const popupImage = popup.querySelector('.popup__image');
+const popupCloseBtn = popup.querySelector('.popup__btn-close');
 let formAddOpen = false;
 let formEditOpen = false;
 let popupOpen = false;
@@ -71,8 +70,11 @@ function onClickFormBackgroundPopup(event) {
 	}
 }
 
+// const closePopup = (element) => {
+
+// }
+
 const closePopup = () =>{
-    body.classList.toggle('root_overflow')
     popup.classList.toggle('popup-image_active')
     if (popupOpen === false) {
         popupOpen = true;
@@ -85,7 +87,6 @@ const popupToggle = (element) =>{
     popupImage.src = element.target.closest('.element__image').src
     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
     popup.classList.toggle('popup-image_active');
-    body.classList.toggle('root_overflow')
     if (popupOpen === false) {
         popupOpen = true;
     } else {

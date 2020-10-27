@@ -23,48 +23,48 @@
         </div>
         <button class="profile__btn-add" type="button"></button>
     </section>
-    <section class="form form_edit">
-        <div class="form__window"> 
-            <button class="form__btn-close form__btn-close_edit" type="button"></button>
-            <form class="form__list form__list_edit" name="form">
-                <h2 class="form__text">Редактировать профиль</h2>
-                <div class="form__input-area">    
-                    <input required minlength="2" maxlength="40" type="text" class="form__input form__input_value_name" id="name" name="name" value="" placeholder="Имя">
-                    <span id="name-error" class="form__error"></span>
+    <section class="popup popup_edit">
+        <div class="popup__window"> 
+            <button class="popup__btn-close popup__btn-close_edit" type="button"></button>
+            <form class="popup__list popup__list_edit" name="form">
+                <h2 class="popup__text">Редактировать профиль</h2>
+                <div class="popup__input-area">    
+                    <input required minlength="2" maxlength="40" type="text" class="popup__input popup__input_value_name" id="name" name="name" value="" placeholder="Имя">
+                    <span id="name-error" class="popup__error"></span>
                 </div>
-                <div class="form__input-area">
-                    <input required minlength="2" maxlength="200" type="text" class="form__input form__input_value_job" id="job" name="job" value="" placeholder="О себе">
-                    <span id="job-error" class="form__error"></span>
+                <div class="popup__input-area">
+                    <input required minlength="2" maxlength="200" type="text" class="form__input popup__input_value_job" id="job" name="job" value="" placeholder="О себе">
+                    <span id="job-error" class="popup__error"></span>
                 </div>
-                <button class="form__btn-save" value="Сохранить" type="submit" name="closeEdit">
+                <button class="popup__btn-save" value="Сохранить" type="submit" name="closeEdit">
                     Сохранить
                 </button>
             </form>
         </div>
     </section>
-    <section class="popup-image">
+    <section class="popup popup_card">
         <div class="popup-image__window">
-            <button class="form__btn-close popup-image__close-button" type="button"></button>
+            <button class="popup__btn-close popup-image__close-button" type="button"></button>
             <div class="popup-image__element">
-                <img src="" alt="" class="popup-image__image">
+                <img src="" alt="" class="popup__image">
                 <p class="popup-image__text"></p>
             </div>
         </div>
     </section>
-    <section class="form form_add">
-        <div class="form__window"> 
-            <button class="form__btn-close form__btn-close_add" type="button"></button>
-            <form class="form__list form__list_add" name="form">
-                <h2 class="form__text">Новое место</h2>
-                <div class="form__input-area">
-                    <input required minlength="2" maxlength="30" type="text" class="form__input form__input_value_name-image" name="name-card" id="name-card" value="" placeholder="Название">
-                    <span id="name-card-error" class="form__error"></span>
+    <section class="popup popup_add">
+        <div class="popup__window"> 
+            <button class="popup__btn-close popup__btn-close_add" type="button"></button>
+            <form class="popup__list form__list_add" name="form">
+                <h2 class="popup__text">Новое место</h2>
+                <div class="popup__input-area">
+                    <input required minlength="2" maxlength="30" type="text" class="popup__input popup__input_value_name-image" name="name-card" id="name-card" value="" placeholder="Название">
+                    <span id="name-card-error" class="popup__error"></span>
                 </div>
-                <div class="form__input-area">
-                    <input required type="url" class="form__input form__input_value_url" name="img-card" id="img-card" value="" placeholder="Ссылка на картинку">
-                    <span id="img-card-error" class="form__error"></span>
+                <div class="popup__input-area">
+                    <input required type="url" class="popup__input popup__input_value_url" name="img-card" id="img-card" value="" placeholder="Ссылка на картинку">
+                    <span id="img-card-error" class="popup__error"></span>
                 </div>
-                <button class="form__btn-save" value="" type="submit" id="addButton">
+                <button class="popup__btn-save" value="" type="submit" id="addButton">
                     Создать
                 </button>
             </form>
