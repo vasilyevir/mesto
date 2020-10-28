@@ -34,19 +34,18 @@ const job = document.querySelector('.profile__job');
 const urlImage = document.querySelector('.popup__input_value_url')
 const jobChange = document.querySelector('.popup__input_value_job');
 const editButton = document.querySelector('.profile__btn-edit');
-const closeButtonEdit = formEdit.querySelector('.popup__btn-close_edit');
-const closeButtonAdd = formAdd.querySelector('.popup__btn-close_add');
 const addButton = document.querySelector('.profile__btn-add');
 const elements = document.querySelector('.elements');
 const template = document.querySelector('#elements');
 const addCard = document.querySelector('#addButton');
-const popup = document.querySelector('.popup_card');
-const popupText = popup.querySelector('.popup__text_type_image');
-const popupImage = popup.querySelector('.popup__image');
-const popupCloseBtn = popup.querySelector('.popup__btn-close');
-let formAddOpen = false;
-let formEditOpen = false;
-let popupOpen = false;
+const popupCard = document.querySelector('.popup_card');
+const popupText = popupCard.querySelector('.popup__text_type_image');
+const popupImage = popupCard.querySelector('.popup__image');
+const cardCloseBtn = popupCard.querySelector('.popup__btn-close');
+const editCloseBtn = formEdit.querySelector('.popup__btn-close');
+const addCloseBtn = formAdd.querySelector('.popup__btn-close');
+let popupOpenNow;
+
 
 
 const renderList = () => {
@@ -66,32 +65,48 @@ function onClickFormBackgroundPopup(event) {
     if (event.target !== event.currentTarget) {
 		return;
 	} else {
-    closePopup();
+    popupClose(event.target.closest('.popup'));
 	}
 }
 
-// const closePopup = (element) => {
-
-// }
-
-const closePopup = () =>{
-    popup.classList.toggle('popup-image_active')
-    if (popupOpen === false) {
-        popupOpen = true;
-    } else {
-        popupOpen = false;
-    }
+const popupClose = (element) => {
+    console.log(element);
+    element.classList.remove('popup_is-opened');
 }
 
-const popupToggle = (element) =>{
+const openPopup = (event) => {
+    if (event.target.classList.contains('profile__btn-add')){
+        formAdd.classList.add('popup_is-opened');
+        return popupOpenNow = formAdd;
+    } else if (event.target.classList.contains('profile__btn-edit')) {
+        formEdit.classList.add('popup_is-opened');  
+        return popupOpenNow = formEdit;  
+    } else if (event.target.classList.contains('element__image')){
+        popupCard.classList.add('popup_is-opened');
+        return popupOpenNow = popupCard;
+    }
+    console.log(popupOpenNow);
+}
+
+const editFormCreate = (element) => {
+    nameChange.setAttribute('value', name.textContent);
+    jobChange.setAttribute('value', job.textContent);
+    openPopup(element);
+}
+
+// const closePopup = () =>{
+//     popup.classList.toggle('popup-image_active')
+//     if (popupOpen === false) {
+//         popupOpen = true;
+//     } else {
+//         popupOpen = false;
+//     }
+// }
+
+const popupCreate = (element) =>{
     popupImage.src = element.target.closest('.element__image').src
     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
-    popup.classList.toggle('popup-image_active');
-    if (popupOpen === false) {
-        popupOpen = true;
-    } else {
-        popupOpen = false;
-    }
+    openPopup(element);
 }
 
 
@@ -104,7 +119,7 @@ const getItems = (data) => {
     const heart = card.querySelector('.element__heart') 
 
 
-    elementImage.addEventListener('click', popupToggle)
+    elementImage.addEventListener('click', popupCreate)
     heart.addEventListener('click', toggleLike)
     deleteButton.addEventListener('click', removeCard)
 
@@ -120,79 +135,86 @@ function sumbitCard(event) {
     elements.prepend(item);
     nameImage.value = ''
     urlImage.value = ''
-    formAddToggle()
+    openPopup(event);
 }
 
-
-function formEditToggleOpen(){
-    nameChange.setAttribute('value', name.textContent);
-	jobChange.setAttribute('value', job.textContent);
-    formEdit.classList.toggle('form_is-opened');
-    formEditOpen = true;
-}
-
-function formEditToggleClose() {
-    formEdit.classList.toggle('form_is-opened');
-    formEditOpen = false;
-}
-
-function formAddToggle() {
-    formAdd.classList.toggle('form_is-opened');
-    if (formAddOpen === false) {
-        formAddOpen = true;
+function onClickFormBackground(event) {
+    if (event.target !== event.currentTarget) {
+    	return;
     } else {
-        formAddOpen = false;
+        console.log(event.target.closest('.popup'))
+        popupClose(event.target.closest('.popup'));
     }
 }
+
+// function formEditToggleOpen(){
+//     nameChange.setAttribute('value', name.textContent);
+// 	jobChange.setAttribute('value', job.textContent);
+//     formEdit.classList.toggle('popup_is-opened');
+//     formEditOpen = true;
+// }
+
+// function formEditToggleClose() {
+//     formEdit.classList.toggle('popup_is-opened');
+//     formEditOpen = false;
+// }
+
+// function formAddToggle() {
+//     formAdd.classList.toggle('popup_is-opened');
+//     if (formAddOpen === false) {
+//         formAddOpen = true;
+//     } else {
+//         formAddOpen = false;
+//     }
+// }
 
 function formSubmitHandler (event) {
 	event.preventDefault(); 
 	name.textContent = nameChange.value;
 	job.textContent = jobChange.value;
-    formEditToggleClose();
-    formEditOpen = false;
+    popupClose(event.target.closest('.popup'));
 }
 
-function onClickFormBackgroundEdit(event) {
-	if (event.target !== event.currentTarget) {
-		return;
-	} else {
-    formEditToggleClose();
-    formEditOpen = false;
-	}
-}
+// function onClickFormBackgroundEdit(event) {
+// 	if (event.target !== event.currentTarget) {
+// 		return;
+// 	} else {
+//     formEditToggleClose();
+//     formEditOpen = false;
+// 	}
+// }
 
-function onClickFormBackgroundAdd(event) {
-	if (event.target !== event.currentTarget) {
-		return;
-	} else {
-    formAddToggle();
-	}
-}
+// function onClickFormBackgroundAdd(event) {
+// 	if (event.target !== event.currentTarget) {
+// 		return;
+// 	} else {
+//     formAddToggle();
+// 	}
+// }
 
 function escForm(evt) {
     if (evt.key === 'Escape') {
-        if (formEditOpen === true) {
-            formEditToggleClose()
-        } else if (formAddOpen === true){
-            formAddToggle()
-        } else if (popupOpen === true){
-            closePopup()
-        }
+        popupClose(popupOpenNow);
     }
-    console.log(formEditOpen, formAddOpen, popupOpen)
 }
 
 
 renderList();
-editButton.addEventListener('click', formEditToggleOpen);
-closeButtonEdit.addEventListener('click', formEditToggleClose);
-closeButtonAdd.addEventListener('click', formAddToggle);
-addButton.addEventListener('click', formAddToggle);
-formEdit.addEventListener('submit', formSubmitHandler);
-formEdit.addEventListener('click', onClickFormBackgroundEdit);
-formAdd.addEventListener('click', onClickFormBackgroundAdd);
-formAdd.addEventListener('submit', sumbitCard)
-popupCloseBtn.addEventListener('click', closePopup)
-popup.addEventListener('click', onClickFormBackgroundPopup)
-document.addEventListener('keydown', escForm)
+editButton.addEventListener('click', editFormCreate);
+addButton.addEventListener('click', openPopup);
+popupCard.addEventListener('submit', popupCreate);
+formAdd.addEventListener('submit', sumbitCard);
+document.addEventListener('keydown', escForm);
+cardCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
+editCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
+addCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
+popupCard.addEventListener('click', onClickFormBackground);
+formEdit.addEventListener('click', onClickFormBackground);
+formAdd.addEventListener('click', onClickFormBackground);
+
+// popupCloseBtn.addEventListener('click', closePopup)
+// popup.addEventListener('click', onClickFormBackgroundPopup)
+// closeButtonEdit.addEventListener('click', formEditToggleClose);
+// closeButtonAdd.addEventListener('click', formAddToggle);
+// formEdit.addEventListener('click', onClickFormBackgroundEdit);
+// formAdd.addEventListener('click', onClickFormBackgroundAdd);
