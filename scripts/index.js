@@ -94,15 +94,6 @@ const editFormCreate = (element) => {
     openPopup(element);
 }
 
-// const closePopup = () =>{
-//     popup.classList.toggle('popup-image_active')
-//     if (popupOpen === false) {
-//         popupOpen = true;
-//     } else {
-//         popupOpen = false;
-//     }
-// }
-
 const popupCreate = (element) =>{
     popupImage.src = element.target.closest('.element__image').src
     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
@@ -135,7 +126,7 @@ function sumbitCard(event) {
     elements.prepend(item);
     nameImage.value = ''
     urlImage.value = ''
-    openPopup(event);
+    popupClose(event.target.closest('.popup'));
 }
 
 function onClickFormBackground(event) {
@@ -147,50 +138,12 @@ function onClickFormBackground(event) {
     }
 }
 
-// function formEditToggleOpen(){
-//     nameChange.setAttribute('value', name.textContent);
-// 	jobChange.setAttribute('value', job.textContent);
-//     formEdit.classList.toggle('popup_is-opened');
-//     formEditOpen = true;
-// }
-
-// function formEditToggleClose() {
-//     formEdit.classList.toggle('popup_is-opened');
-//     formEditOpen = false;
-// }
-
-// function formAddToggle() {
-//     formAdd.classList.toggle('popup_is-opened');
-//     if (formAddOpen === false) {
-//         formAddOpen = true;
-//     } else {
-//         formAddOpen = false;
-//     }
-// }
-
 function formSubmitHandler (event) {
 	event.preventDefault(); 
 	name.textContent = nameChange.value;
 	job.textContent = jobChange.value;
     popupClose(event.target.closest('.popup'));
 }
-
-// function onClickFormBackgroundEdit(event) {
-// 	if (event.target !== event.currentTarget) {
-// 		return;
-// 	} else {
-//     formEditToggleClose();
-//     formEditOpen = false;
-// 	}
-// }
-
-// function onClickFormBackgroundAdd(event) {
-// 	if (event.target !== event.currentTarget) {
-// 		return;
-// 	} else {
-//     formAddToggle();
-// 	}
-// }
 
 function escForm(evt) {
     if (evt.key === 'Escape') {
@@ -204,6 +157,7 @@ editButton.addEventListener('click', editFormCreate);
 addButton.addEventListener('click', openPopup);
 popupCard.addEventListener('submit', popupCreate);
 formAdd.addEventListener('submit', sumbitCard);
+formEdit.addEventListener('submit', formSubmitHandler);
 document.addEventListener('keydown', escForm);
 cardCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
 editCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
@@ -211,10 +165,3 @@ addCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest
 popupCard.addEventListener('click', onClickFormBackground);
 formEdit.addEventListener('click', onClickFormBackground);
 formAdd.addEventListener('click', onClickFormBackground);
-
-// popupCloseBtn.addEventListener('click', closePopup)
-// popup.addEventListener('click', onClickFormBackgroundPopup)
-// closeButtonEdit.addEventListener('click', formEditToggleClose);
-// closeButtonAdd.addEventListener('click', formAddToggle);
-// formEdit.addEventListener('click', onClickFormBackgroundEdit);
-// formAdd.addEventListener('click', onClickFormBackgroundAdd);
