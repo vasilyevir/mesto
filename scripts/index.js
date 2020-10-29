@@ -44,7 +44,7 @@ const popupImage = popupCard.querySelector('.popup__image');
 const cardCloseBtn = popupCard.querySelector('.popup__btn-close');
 const editCloseBtn = formEdit.querySelector('.popup__btn-close');
 const addCloseBtn = formAdd.querySelector('.popup__btn-close');
-let popupOpenNow;
+
 
 
 
@@ -70,22 +70,17 @@ function onClickFormBackgroundPopup(event) {
 }
 
 const popupClose = (element) => {
-    console.log(element);
     element.classList.remove('popup_is-opened');
 }
 
 const openPopup = (event) => {
     if (event.target.classList.contains('profile__btn-add')){
         formAdd.classList.add('popup_is-opened');
-        return popupOpenNow = formAdd;
     } else if (event.target.classList.contains('profile__btn-edit')) {
         formEdit.classList.add('popup_is-opened');  
-        return popupOpenNow = formEdit;  
     } else if (event.target.classList.contains('element__image')){
         popupCard.classList.add('popup_is-opened');
-        return popupOpenNow = popupCard;
     }
-    console.log(popupOpenNow);
 }
 
 const editFormCreate = (element) => {
@@ -146,6 +141,7 @@ function formSubmitHandler (event) {
 }
 
 function escForm(evt) {
+    const popupOpenNow = document.querySelector('.popup_is-opened')
     if (evt.key === 'Escape') {
         popupClose(popupOpenNow);
     }
