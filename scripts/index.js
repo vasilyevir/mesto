@@ -73,26 +73,24 @@ const popupClose = (element) => {
     element.classList.remove('popup_is-opened');
 }
 
-const openPopup = (event) => {
-    if (event.target.classList.contains('profile__btn-add')){
-        formAdd.classList.add('popup_is-opened');
-    } else if (event.target.classList.contains('profile__btn-edit')) {
-        formEdit.classList.add('popup_is-opened');  
-    } else if (event.target.classList.contains('element__image')){
-        popupCard.classList.add('popup_is-opened');
-    }
+const openPopup = (popupName) => {
+    popupName.classList.add('popup_is-opened');
 }
 
-const editFormCreate = (element) => {
+const addFormCreate = () => {
+    openPopup(formAdd);
+}
+
+const editFormCreate = () => {
     nameChange.setAttribute('value', name.textContent);
     jobChange.setAttribute('value', job.textContent);
-    openPopup(element);
+    openPopup(formEdit);
 }
 
 const popupCreate = (element) =>{
     popupImage.src = element.target.closest('.element__image').src
     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
-    openPopup(element);
+    openPopup(popupCard);
 }
 
 
@@ -150,7 +148,7 @@ function escForm(evt) {
 
 renderList();
 editButton.addEventListener('click', editFormCreate);
-addButton.addEventListener('click', openPopup);
+addButton.addEventListener('click', addFormCreate);
 popupCard.addEventListener('submit', popupCreate);
 formAdd.addEventListener('submit', sumbitCard);
 formEdit.addEventListener('submit', formSubmitHandler);
