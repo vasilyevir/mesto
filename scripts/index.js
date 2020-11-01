@@ -71,10 +71,12 @@ function onClickFormBackgroundPopup(event) {
 
 const popupClose = (element) => {
     element.classList.remove('popup_is-opened');
+    document.removeEventListener('keydown', escForm);
 }
 
 const openPopup = (popupName) => {
     popupName.classList.add('popup_is-opened');
+    document.addEventListener('keydown', escForm);
 }
 
 const addFormCreate = () => {
@@ -138,7 +140,7 @@ function formSubmitHandler (event) {
     popupClose(event.target.closest('.popup'));
 }
 
-function escForm(evt) {
+const escForm = (evt) => {
     const popupOpenNow = document.querySelector('.popup_is-opened')
     if (evt.key === 'Escape') {
         popupClose(popupOpenNow);
@@ -152,7 +154,6 @@ addButton.addEventListener('click', addFormCreate);
 popupCard.addEventListener('submit', popupCreate);
 formAdd.addEventListener('submit', sumbitCard);
 formEdit.addEventListener('submit', formSubmitHandler);
-document.addEventListener('keydown', escForm);
 cardCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
 editCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
 addCloseBtn.addEventListener('click', (event => {popupClose(event.target.closest('.popup'))}));
