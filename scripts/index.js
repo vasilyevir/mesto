@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+// import { FormValidator } from './FormValidator.js';
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -36,8 +39,8 @@ const jobChange = document.querySelector('.popup__input_value_job');
 const editButton = document.querySelector('.profile__btn-edit');
 const addButton = document.querySelector('.profile__btn-add');
 const elements = document.querySelector('.elements');
-const template = document.querySelector('#elements');
-const addCard = document.querySelector('#addButton');
+const template = '#elements';
+// const addCard = document.querySelector('#addButton');
 const popupCard = document.querySelector('.popup_card');
 const popupText = popupCard.querySelector('.popup__text_type_image');
 const popupImage = popupCard.querySelector('.popup__image');
@@ -48,26 +51,33 @@ const addCloseBtn = formAdd.querySelector('.popup__btn-close');
 
 
 
-const renderList = () => {
-        const items = initialCards.map(element => getItems(element))
-        elements.append(...items)
+const addItem = element => {
+        // const listItem = new Card(data.name, data.link, template);
+        // initialCards.forEach((element) => {
+            const listItem = new Card(element, template);
+            listItem.render(elements);
+        // })
+
+        // const items = initialCards.map(element => getItems(element))
+        // elements.append(...items)
+
+        // initialCards.forEach(element => {
+        //     const listItem = new Card(element, template);
+        //     return listItem;
+        // })
+        // items.render(elements);
 }
 
-const removeCard = (event) => {
-    event.target.closest('.element').remove();
+function renderList(){
+    initialCards.forEach(addItem)
 }
+// const removeCard = (event) => {
+//     event.target.closest('.element').remove();
+// }
 
-const toggleLike = (element) =>{
-    element.target.closest('.element__heart').classList.toggle('element__heart_active')
-}
-
-function onClickFormBackgroundPopup(event) {
-    if (event.target !== event.currentTarget) {
-		return;
-	} else {
-    popupClose(event.target.closest('.popup'));
-	}
-}
+// const toggleLike = (element) =>{
+//     element.target.closest('.element__heart').classList.toggle('element__heart_active')
+// }
 
 const popupClose = (element) => {
     element.classList.remove('popup_is-opened');
@@ -96,29 +106,31 @@ const popupCreate = (element) =>{
 }
 
 
-const getItems = (data) => {
-    const card = template.content.cloneNode(true);
-    card.querySelector('.element__text').textContent = data.name;
-    const elementImage = card.querySelector('.element__image');
-    elementImage.src = data.link;
-    const deleteButton = card.querySelector('.element__btn-delete');
-    const heart = card.querySelector('.element__heart') 
+// const getItems = (data) => {
+//     const card = template.content.cloneNode(true);
+//     card.querySelector('.element__text').textContent = data.name;
+//     elementImage.src = data.link;
+//     const elementImage = card.querySelector('.element__image');
+//     const deleteButton = card.querySelector('.element__btn-delete');
+//     const heart = card.querySelector('.element__heart') 
 
 
-    elementImage.addEventListener('click', popupCreate)
-    heart.addEventListener('click', toggleLike)
-    deleteButton.addEventListener('click', removeCard)
+//     elementImage.addEventListener('click', popupCreate)
+//     heart.addEventListener('click', toggleLike)
+//     deleteButton.addEventListener('click', removeCard)
 
-    return card;
-}
+//     return card;
+// }
 
 function sumbitCard(event) {
     event.preventDefault();
     const data = {}
     data.name = nameImage.value;
     data.link = urlImage.value; 
-    const item = getItems(data)
-    elements.prepend(item);
+    const listItem = new Card(data, template);
+    listItem.render(elements);
+    // const item = getItems(data)
+    // elements.prepend(item);
     nameImage.value = ''
     urlImage.value = ''
     popupClose(event.target.closest('.popup'));
