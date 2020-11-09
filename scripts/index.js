@@ -1,4 +1,5 @@
 import { Card } from './Card.js';
+import {popupClose, openPopup, popupCreate} from './utils.js'
 // import { FormValidator } from './FormValidator.js';
 
 const initialCards = [
@@ -42,8 +43,8 @@ const elements = document.querySelector('.elements');
 const template = '#elements';
 // const addCard = document.querySelector('#addButton');
 const popupCard = document.querySelector('.popup_card');
-const popupText = popupCard.querySelector('.popup__text_type_image');
-const popupImage = popupCard.querySelector('.popup__image');
+// const popupText = popupCard.querySelector('.popup__text_type_image');
+// const popupImage = popupCard.querySelector('.popup__image');
 const cardCloseBtn = popupCard.querySelector('.popup__btn-close');
 const editCloseBtn = formEdit.querySelector('.popup__btn-close');
 const addCloseBtn = formAdd.querySelector('.popup__btn-close');
@@ -79,15 +80,15 @@ function renderList(){
 //     element.target.closest('.element__heart').classList.toggle('element__heart_active')
 // }
 
-const popupClose = (element) => {
-    element.classList.remove('popup_is-opened');
-    document.removeEventListener('keydown', escForm);
-}
+// const popupClose = (element) => {
+//     element.classList.remove('popup_is-opened');
+//     document.removeEventListener('keydown', escForm);
+// }
 
-const openPopup = (popupName) => {
-    popupName.classList.add('popup_is-opened');
-    document.addEventListener('keydown', escForm);
-}
+// const openPopup = (popupName) => {
+//     popupName.classList.add('popup_is-opened');
+//     document.addEventListener('keydown', escForm);
+// }
 
 const addFormCreate = () => {
     openPopup(formAdd);
@@ -99,11 +100,11 @@ const editFormCreate = () => {
     openPopup(formEdit);
 }
 
-const popupCreate = (element) =>{
-    popupImage.src = element.target.closest('.element__image').src
-    popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
-    openPopup(popupCard);
-}
+// const popupCreate = (element) =>{
+//     popupImage.src = element.target.closest('.element__image').src
+//     popupText.textContent = element.target.closest('.element').querySelector('.element__text').textContent
+//     openPopup(popupCard);
+// }
 
 
 // const getItems = (data) => {
@@ -152,12 +153,12 @@ function formSubmitHandler (event) {
     popupClose(event.target.closest('.popup'));
 }
 
-const escForm = (evt) => {
-    const popupOpenNow = document.querySelector('.popup_is-opened')
-    if (evt.key === 'Escape') {
-        popupClose(popupOpenNow);
-    }
-}
+// const escForm = (evt) => {
+//     const popupOpenNow = document.querySelector('.popup_is-opened')
+//     if (evt.key === 'Escape') {
+//         popupClose(popupOpenNow);
+//     }
+// }
 
 
 renderList();

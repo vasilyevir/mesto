@@ -1,15 +1,11 @@
+import {popupClose, openPopup, popupCreate, escForm} from './utils.js'
+
 export class Card{
     constructor(data, templateSelector){
         this._text = data.name;
         this._link = data.link;
         this._template = document.querySelector(templateSelector).content;
     }
-
-    // _popupCreate(){
-    //     this._content.querySelector('.element__image').src = this._link;
-    //     this._content.querySelector('.element__text').textContent = this._text;
-    //     openPopup(popupCard);
-    // }
 
     _toggleLike(){
         this._content.querySelector('.element__heart').classList.toggle('element__heart_active');
@@ -24,9 +20,9 @@ export class Card{
         this._content.querySelector('.element__image').src = this._link;
         this._content.querySelector('.element__text').textContent = this._text;
 
-        // this._content
-        // .querySelector('.element__image')
-        // .addEventListener('click',() =>{this._popupCreate()});
+        this._content
+        .querySelector('.element__image')
+        .addEventListener('click',() =>{popupCreate(this._content)});
         this._content
         .querySelector('.element__btn-delete')
         .addEventListener('click',() => this._removeCard());
@@ -36,20 +32,4 @@ export class Card{
 
         container.prepend(this._content);
     }
-
-    
-
-    // _setEventListener(){
-    //     this._element.querySelector('.element__image').addEventListener('click',() =>{ 
-    //         popupCreate
-    //     });
-    //     this._element.querySelector('.element__btn-delete').addEventListener('click',() => {
-    //         toggleLike
-    //     });
-    //     this._element.querySelector('.element__heart').addEventListener('click',() => {
-    //         removeCard
-    //     });
-    // // }
-    
-    
 }
