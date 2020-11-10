@@ -1,3 +1,5 @@
+import { FormValidator } from './FormValidator.js';
+
 const popupCard = document.querySelector('.popup_card');
 const popupText = popupCard.querySelector('.popup__text_type_image');
 const popupImage = popupCard.querySelector('.popup__image');
@@ -10,6 +12,7 @@ const popupClose = (element) => {
 const openPopup = (popupName) => {
     popupName.classList.add('popup_is-opened');
     document.addEventListener('keydown', escForm);
+    FormValidation();
 }
 
 const popupCreate = (element) =>{
@@ -23,5 +26,12 @@ const escForm = (evt) => {
         popupClose(popupOpenNow);
     }
 }
+const FormValidation = () =>{
+    const popupOpenNow = document.querySelector('.popup_is-opened');
+
+    const Validation = new FormValidator(popupOpenNow);
+    Validation.enableValidation()
+}
+
 
 export {popupClose, openPopup, popupCreate, escForm}

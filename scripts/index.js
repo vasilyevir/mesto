@@ -1,6 +1,6 @@
 import { Card } from './Card.js';
-import {popupClose, openPopup, popupCreate} from './utils.js'
 // import { FormValidator } from './FormValidator.js';
+import {popupClose, openPopup, popupCreate} from './utils.js'
 
 const initialCards = [
     {
@@ -160,7 +160,14 @@ function formSubmitHandler (event) {
 //     }
 // }
 
+// const FormValidation = () =>{
+//     const popupOpenNow = document.querySelector('.popup_is-opened');
 
+//     const Validation = new FormValidator(popupOpenNow);
+//     Validation.enableValidation()
+// }
+
+// FormValidation();
 renderList();
 editButton.addEventListener('click', editFormCreate);
 addButton.addEventListener('click', addFormCreate);
