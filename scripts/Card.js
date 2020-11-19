@@ -1,4 +1,4 @@
-import {popupClose, openPopup, popupCreate, escForm} from './utils.js'
+import {popupCreate} from './utils.js'
 
 export class Card{
     constructor(data, templateSelector){
