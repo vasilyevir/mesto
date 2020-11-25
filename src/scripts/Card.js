@@ -1,10 +1,9 @@
-import {popupCreate} from './utils.js'
-
 export class Card{
-    constructor(data, templateSelector){
+    constructor(data, templateSelector,{handleCardClick}){
         this._text = data.name;
         this._link = data.link;
         this._template = document.querySelector(templateSelector).content;
+        this._handleCardClick = handleCardClick;
     }
 
     _toggleLike(){
@@ -15,14 +14,14 @@ export class Card{
         this._content.remove();
     }
 
-    render = (container) => {
+    render(container){
         this._content = this._template.querySelector('.element').cloneNode(true);
         this._content.querySelector('.element__image').src = this._link;
         this._content.querySelector('.element__text').textContent = this._text;
 
         this._content
         .querySelector('.element__image')
-        .addEventListener('click',() =>{popupCreate(this._content)});
+        .addEventListener('click',() =>{this._handleCardClick(this._content)});
         this._content
         .querySelector('.element__btn-delete')
         .addEventListener('click',() => this._removeCard());

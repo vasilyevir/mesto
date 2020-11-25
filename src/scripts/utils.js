@@ -1,4 +1,4 @@
-import {FormValidator} from './FormValidator.js';
+// import {FormValidator} from './FormValidator.js';
 
 // const popupCard = document.querySelector('.popup_card');
 // const popupText = popupCard.querySelector('.popup__text_type_image');
