@@ -50,7 +50,7 @@ _setEventListener() {
     this._toggleButtonState(this._popupOpen, this._submitButtonSelector);
 }
 
-enableValidation = () => {
+enableValidation(){
     if (this._popupOpen){
     this._popupOpen.addEventListener('submit', (evt) => {
             evt.preventDefault();
