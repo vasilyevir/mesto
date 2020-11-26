@@ -14,7 +14,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     open: true,
-    port: 7777
+    port: 7771
   },
   module: {
     rules: [
@@ -35,7 +35,8 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, {
-            loader: "css-loader"
+            loader: "css-loader",
+            options: { importLoaders: 1}
         }, 'postcss-loader'],
       }
     ]
