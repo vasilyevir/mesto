@@ -14,9 +14,10 @@ export class Card{
         this._content.remove();
     }
 
-    render(container){
+    render(){
         this._content = this._template.querySelector('.element').cloneNode(true);
         this._content.querySelector('.element__image').src = this._link;
+        this._content.querySelector('.element__image').alt = this._text;
         this._content.querySelector('.element__text').textContent = this._text;
 
         this._content
@@ -28,7 +29,8 @@ export class Card{
         this._content
         .querySelector('.element__heart')
         .addEventListener('click',() => {this._toggleLike()});
-
-        container.prepend(this._content);
+        return this._content;
+        // console.log(this._content);
+        // container.prepend(this._content);
     }
 }

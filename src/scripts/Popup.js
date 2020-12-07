@@ -1,5 +1,3 @@
-import {FormValidator} from './FormValidator.js';
-
 export class Popup{
     constructor(selector){
         this._popup = document.querySelector(selector);
@@ -7,16 +5,14 @@ export class Popup{
 
     closePopup(){
         this._popup.classList.remove('popup_is-opened');
-        document.removeEventListener('keydown',() => { this._escForm() });
+        document.removeEventListener('keydown',() => { this._escForm.bind(this)});
+        this._popup.addEventListener('click',()=>{this._onClickFormBackground.bind(this)});
     }   
     
     openPopup(){
         this._popup.classList.add('popup_is-opened');
         document.addEventListener('keydown',(evt) =>{this._escForm(evt)});
         this._popup.addEventListener('click',(evt)=>{this._onClickFormBackground(evt)});
-        const Validation = new FormValidator(this._popup);
-        Validation.enableValidation();
-        this.setEventListeners();
     }
 
     _onClickFormBackground(event) {

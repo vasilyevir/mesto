@@ -43,6 +43,10 @@ const addButton = document.querySelector('.profile__btn-add');
 const addBtn = '.profile__btn-add'
 const elements = '.elements';
 const template = '#elements';
+const data = {};
+data.inactiveButtonClass = 'popup__btn-save_invalid';
+data.inputErrorClass = 'popup__input_state_invalid';
+
 
 export {initialCards, popupText, popupImage, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard, elementText, elementImage}
+    editButton, addButton, addBtn, elements, template, popupCard, elementText, elementImage, data}

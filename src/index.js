@@ -1,66 +1,85 @@
 import {Card}  from './scripts/Card.js';
+import {Popup} from './scripts/Popup.js'
 import {PopupWithForm} from './scripts/PopupWithForm.js';
 import PopupWithImage from './scripts/PopupWithImage.js';
 import UserInfo from './scripts/UserInfo.js'
 import {Section} from './scripts/section.js';
+import {FormValidator} from './scripts/FormValidator.js';
 import {initialCards, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard} from './utils/contants.js'
+    editButton, addButton, addBtn, elements, template, popupCard, data} from './utils/contants.js'
 import './pages/index.css'
 import pic from './images/Custo.png'
 
-const renderList = () => {
-    const param = new Section({
-        items: initialCards,
-        renderer: (element, container) => {
-            const listItem = new Card(element, template,{
-                handleCardClick: (content)=>{
-                    const PopupCard = new PopupWithImage(popupCard);
-                    PopupCard.openPopup(content);
-                }
-            }
-            );
-            listItem.render(container);
+const validation = (val) =>{
+    data.inputSelector = Array.from(document.querySelector(val).querySelectorAll('.popup__input'));
+    data.submitButtonSelector = document.querySelector(val).querySelector('.popup__btn-save');
+    const valid = new FormValidator(val, {data});
+    valid.enableValidation();
+}
+
+const popupImage = new PopupWithImage(popupCard);
+
+const createCard = (element) => {
+    const listItem = new Card(element, template,{
+        handleCardClick: (content)=>{
+            popupImage.openPopup(content);
         }
-    }, elements);
-    param.renderer();
+    });
+    return listItem.render();
+
+}
+
+const userInfo = (obj) => {
+    const User = new UserInfo(obj);
+    User.getUserInfo();
+    User.setUserInfo();
+}
+
+const popupAdd = new PopupWithForm(formAdd, {
+    callback: (data) => {
+        const val = {};
+        val.name = data.nameCard;
+        val.link = data.imgCard;
+        const card = createCard(val);
+        cardsContainer.addItem(card);
+    }
+})
+
+const popupEdit = new PopupWithForm(formEdit,{
+    callback: (data) => {
+        userInfo(data);
+    }
+})
+
+const cardsContainer = new Section({
+    items: initialCards,
+    renderer: (element) => {
+        const card = createCard(element);
+        return card;
+    }
+}, elements);
+
+const renderList = () => {
+    cardsContainer.renderer();
 }
 
 function openAddPopup(){
-        const PopupAdd = new PopupWithForm(formAdd, {
-            callback: (data) => {
-                const val = {};
-                val.name = data.nameCard;
-                val.link = data.imgCard;
-                const listItem = new Card(val, template,{
-                    handleCardClick: (content)=>{
-                        const popupCard = new PopupWithImage(popupCard);
-                        popupCard.openPopup(content);
-                    }
-                }
-                );
-                listItem.render(document.querySelector(elements));
-            }
-        })
-        PopupAdd.openPopup();
+    popupAdd.openPopup();
+    validation(formAdd);
 }
 
 function openEditPopup() {
-    const PopupEdit = new PopupWithForm(formEdit,{
-        callback: (data) => {
-            const User = new UserInfo(data);
-            User.setUserInfo();
-        }
-    })
+    popupEdit.openPopup();
     const obj = {}
     obj.name = document.querySelector(name).textContent;
     obj.job = document.querySelector(job).textContent;
-    const User = new UserInfo(obj);
-    User.getUserInfo();
-    PopupEdit.openPopup();
+    userInfo(obj);
+    validation(formEdit);
 }
 
-
 renderList();
-
+popupAdd.setEventListeners();
+popupEdit.setEventListeners();
 addButton.addEventListener('click', openAddPopup);
 editButton.addEventListener('click', openEditPopup);
+

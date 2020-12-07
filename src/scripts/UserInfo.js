@@ -9,6 +9,7 @@ export default class UserInfo{
     setUserInfo(){
         document.querySelector(name).textContent = this._name;
         document.querySelector(job).textContent = this._job;
+        console.log(document.querySelector(name).textContent)
     }
 
     getUserInfo(){
