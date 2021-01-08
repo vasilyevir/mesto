@@ -5,17 +5,16 @@ import PopupWithImage from './scripts/PopupWithImage.js';
 import UserInfo from './scripts/UserInfo.js'
 import {Section} from './scripts/section.js';
 import {FormValidator} from './scripts/FormValidator.js';
-import {initialCards, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard, data} from './utils/contants.js'
+import {initialCards, formAdd, formEdit, nameChange, jobChange,
+    editButton, addButton, elements, template, popupCard, validationConfigProfile, validationConfigCard, obj} from './utils/contants.js'
 import './pages/index.css'
 import pic from './images/Custo.png'
 
-const validation = (val) =>{
-    data.inputSelector = Array.from(document.querySelector(val).querySelectorAll('.popup__input'));
-    data.submitButtonSelector = document.querySelector(val).querySelector('.popup__btn-save');
-    const valid = new FormValidator(val, {data});
-    valid.enableValidation();
-}
+const formValidatorProfile = new FormValidator(formEdit, validationConfigProfile);
+formValidatorProfile.enableValidation();
+
+const formValidatorCard = new FormValidator(formAdd, validationConfigCard);
+formValidatorCard.enableValidation(); 
 
 const popupImage = new PopupWithImage(popupCard);
 
@@ -23,17 +22,13 @@ const createCard = (element) => {
     const listItem = new Card(element, template,{
         handleCardClick: (content)=>{
             popupImage.openPopup(content);
+            popupImage.setEventListeners();
         }
     });
     return listItem.render();
 
 }
-
-const userInfo = (obj) => {
-    const User = new UserInfo(obj);
-    User.getUserInfo();
-    User.setUserInfo();
-}
+const userInfo = new UserInfo(obj);
 
 const popupAdd = new PopupWithForm(formAdd, {
     callback: (data) => {
@@ -47,16 +42,16 @@ const popupAdd = new PopupWithForm(formAdd, {
 
 const popupEdit = new PopupWithForm(formEdit,{
     callback: (data) => {
-        userInfo(data);
+        userInfo.setUserInfo(data);
     }
+
 })
 
 const cardsContainer = new Section({
     items: initialCards,
     renderer: (element) => {
-        const card = createCard(element);
-        return card;
-    }
+        return createCard(element);   
+        }
 }, elements);
 
 const renderList = () => {
@@ -65,16 +60,13 @@ const renderList = () => {
 
 function openAddPopup(){
     popupAdd.openPopup();
-    validation(formAdd);
 }
 
 function openEditPopup() {
     popupEdit.openPopup();
-    const obj = {}
-    obj.name = document.querySelector(name).textContent;
-    obj.job = document.querySelector(job).textContent;
-    userInfo(obj);
-    validation(formEdit);
+    userInfo.getUserInfo(obj);
+    nameChange.setAttribute('value', userInfo.getUserInfo(obj).name);
+    jobChange.setAttribute('value',  userInfo.getUserInfo(obj).job);
 }
 
 renderList();

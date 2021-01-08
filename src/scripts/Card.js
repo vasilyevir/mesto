@@ -16,8 +16,9 @@ export class Card{
 
     render(){
         this._content = this._template.querySelector('.element').cloneNode(true);
-        this._content.querySelector('.element__image').src = this._link;
-        this._content.querySelector('.element__image').alt = this._text;
+        this._image = this._content.querySelector('.element__image');
+        this._image.src = this._link;
+        this._image.alt = this._text;
         this._content.querySelector('.element__text').textContent = this._text;
 
         this._content

@@ -1,19 +1,18 @@
-import {name, job, nameChange, jobChange} from '../utils/contants.js'
-
 export default class UserInfo{
     constructor(data){
-        this._name = data.name;
-        this._job = data.job;
+        this._name = document.querySelector(data.name);
+        this._job = document.querySelector(data.job);
     }
 
-    setUserInfo(){
-        document.querySelector(name).textContent = this._name;
-        document.querySelector(job).textContent = this._job;
-        console.log(document.querySelector(name).textContent)
-    }
+    setUserInfo(data) {
+        this._name.textContent = data.name;
+        this._job.textContent = data.job;
+    } 
 
-    getUserInfo(){
-        nameChange.setAttribute('value', this._name);
-        jobChange.setAttribute('value', this._job);
-    }
+    getUserInfo() {
+        return {
+          name: this._name.textContent,
+          job: this._job.textContent
+        }
+    } 
 }

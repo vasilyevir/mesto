@@ -43,10 +43,22 @@ const addButton = document.querySelector('.profile__btn-add');
 const addBtn = '.profile__btn-add'
 const elements = '.elements';
 const template = '#elements';
-const data = {};
-data.inactiveButtonClass = 'popup__btn-save_invalid';
-data.inputErrorClass = 'popup__input_state_invalid';
+const validationConfigProfile = {};
+const validationConfigCard = {};
+validationConfigProfile.inputSelector = Array.from(document.querySelector(formEdit).querySelectorAll('.popup__input')),
+validationConfigProfile.submitButtonSelector = document.querySelector(formEdit).querySelector('.popup__btn-save'),
+validationConfigProfile.inactiveButtonClass = 'popup__btn-save_invalid';
+validationConfigProfile.inputErrorClass = 'popup__input_state_invalid';
 
+
+validationConfigCard.inputSelector = Array.from(document.querySelector(formAdd).querySelectorAll('.popup__input')),
+validationConfigCard.submitButtonSelector = document.querySelector(formAdd).querySelector('.popup__btn-save'),
+validationConfigCard.inactiveButtonClass = 'popup__btn-save_invalid';
+validationConfigCard.inputErrorClass = 'popup__input_state_invalid';
+
+const obj = {};
+obj.name = '.profile__name';
+obj.job = '.profile__job';
 
 export {initialCards, popupText, popupImage, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard, elementText, elementImage, data}
+    editButton, addButton, addBtn, elements, template, popupCard, elementText, elementImage, validationConfigProfile, validationConfigCard, obj}
