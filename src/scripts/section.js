@@ -7,14 +7,23 @@ export class Section{
 
 
 
-    addItem (element){
-        this._selector.prepend(element);
-    }    
+    // addItem (element){
+    //     this._selector.prepend(element);
+    // }    
+
+    addItem(element, isArray) { 
+        if (isArray) { 
+            this._selector.append(element); 
+        } else { 
+            this._selector.prepend(element); 
+        } 
+      }
   
     renderer(){
         this._items.forEach((element) =>{
             const card = this._renderer(element);
-            this.addItem(card)
+            const isArray = true;
+            this.addItem(card, isArray)
         });
     }
 }

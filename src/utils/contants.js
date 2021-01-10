@@ -60,5 +60,11 @@ const obj = {};
 obj.name = '.profile__name';
 obj.job = '.profile__job';
 
-export {initialCards, popupText, popupImage, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard, elementText, elementImage, validationConfigProfile, validationConfigCard, obj}
+const configImage = {};
+configImage.popupText = popupText;
+configImage.popupImage = popupImage;
+configImage.elementText = elementText;
+configImage.elementImage = elementImage;
+
+export {initialCards, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
+    editButton, addButton, addBtn, elements, template, popupCard, validationConfigProfile, validationConfigCard, obj, configImage}

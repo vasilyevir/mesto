@@ -1,15 +1,18 @@
-import { elements } from '../utils/contants.js';
 import {Popup} from './Popup.js';
 
 class PopupWithForm extends Popup{
     constructor(selector, {callback}){
         super(selector);
         this._callback = callback;
+        this._popupList = this._popup.querySelector('.popup__list');
     }
 
     closePopup(){
         super.closePopup();
-        this._popup.querySelector('.popup__list').reset();
+        const buttonElement = this._popupList.querySelector('.popup__btn-save');
+        buttonElement.classList.add('popup__btn-save_invalid');
+        buttonElement.disabled = true;
+        this._popupList.reset();
     }
 
     _getInputValues(obj){
@@ -23,7 +26,7 @@ class PopupWithForm extends Popup{
 
     setEventListeners(){
         super.setEventListeners();
-        this._popup.querySelector('.popup__list').addEventListener('submit',(evt) => {
+        this._popupList.addEventListener('submit',(evt) => {
             evt.preventDefault();
             const obj = {};
             this._getInputValues(obj);
@@ -32,4 +35,5 @@ class PopupWithForm extends Popup{
         })
     }
 }
+
 export {PopupWithForm};

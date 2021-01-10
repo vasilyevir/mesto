@@ -12,8 +12,8 @@ export class Popup{
     
     openPopup(){
         this._popup.classList.add('popup_is-opened');
-        document.addEventListener('keydown',(evt) =>{this._escForm(evt)});
-        this._popup.addEventListener('click',(evt)=>{this._onClickFormBackground(evt)});
+        document.addEventListener('keydown', this._escForm.bind(this));
+        this._popup.addEventListener('click', this._onClickFormBackground.bind(this));
     }
 
     _onClickFormBackground(event) {

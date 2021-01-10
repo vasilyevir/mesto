@@ -11,18 +11,23 @@ export class Card{
     }    
 
     _removeCard(){
-        this._content.remove();
+        this._content = null;
+    }
+
+    _getTemplate(){
+        this._content = this._template.querySelector('.element').cloneNode(true);
+        return this._content;
     }
 
     render(){
-        this._content = this._template.querySelector('.element').cloneNode(true);
+        this._getTemplate();
         this._image = this._content.querySelector('.element__image');
         this._image.src = this._link;
         this._image.alt = this._text;
-        this._content.querySelector('.element__text').textContent = this._text;
-
         this._content
-        .querySelector('.element__image')
+        .querySelector('.element__text').textContent = this._text;
+
+        this._image
         .addEventListener('click',() =>{this._handleCardClick(this._content)});
         this._content
         .querySelector('.element__btn-delete')

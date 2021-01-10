@@ -1,14 +1,14 @@
-import {Card}  from './scripts/Card.js';
-import {Popup} from './scripts/Popup.js'
-import {PopupWithForm} from './scripts/PopupWithForm.js';
-import PopupWithImage from './scripts/PopupWithImage.js';
-import UserInfo from './scripts/UserInfo.js'
-import {Section} from './scripts/section.js';
-import {FormValidator} from './scripts/FormValidator.js';
+import {Card}  from '../scripts/Card.js';
+import {Popup} from '../scripts/Popup.js'
+import {PopupWithForm} from '../scripts/PopupWithForm.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import UserInfo from '../scripts/UserInfo.js'
+import {Section} from '../scripts/section.js';
+import {FormValidator} from '../scripts/FormValidator.js';
 import {initialCards, formAdd, formEdit, nameChange, jobChange,
-    editButton, addButton, elements, template, popupCard, validationConfigProfile, validationConfigCard, obj} from './utils/contants.js'
-import './pages/index.css'
-import pic from './images/Custo.png'
+    editButton, addButton, elements, template, popupCard, validationConfigProfile, validationConfigCard, obj, configImage} from '../utils/contants.js'
+import '../pages/index.css'
+import pic from '../images/Custo.png'
 
 const formValidatorProfile = new FormValidator(formEdit, validationConfigProfile);
 formValidatorProfile.enableValidation();
@@ -16,7 +16,7 @@ formValidatorProfile.enableValidation();
 const formValidatorCard = new FormValidator(formAdd, validationConfigCard);
 formValidatorCard.enableValidation(); 
 
-const popupImage = new PopupWithImage(popupCard);
+const popupImage = new PopupWithImage(popupCard, configImage);
 
 const createCard = (element) => {
     const listItem = new Card(element, template,{
@@ -36,7 +36,9 @@ const popupAdd = new PopupWithForm(formAdd, {
         val.name = data.nameCard;
         val.link = data.imgCard;
         const card = createCard(val);
-        cardsContainer.addItem(card);
+        const isArray = false;
+        cardsContainer.addItem(card, isArray);
+        
     }
 })
 
