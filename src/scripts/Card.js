@@ -11,6 +11,7 @@ export class Card{
     }    
 
     _removeCard(){
+        this._content.remove();
         this._content = null;
     }
 
