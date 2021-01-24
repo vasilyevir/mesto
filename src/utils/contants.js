@@ -50,9 +50,9 @@ const like = '.element__heart';
 const likeActive = 'element__heart_active';
 const numberOfLikes = ".element__like-number";
 const formAvatar = '.popup_avatar';
-const avatar = document.querySelector('.profile__image-avatar');
+const avatarImage = document.querySelector('.profile__image-avatar');
 const avatarButton = document.querySelector('.profile__image-avatar-effects');
-const btnSave = '.element__btn-delete';
+const btnSave = '.popup__btn-save';
 
 const validationConfigAvatar = {};
 validationConfigAvatar.inputSelector = Array.from(document.querySelector(formAvatar).querySelectorAll('.popup__input')),
@@ -91,5 +91,5 @@ const token = 'ff772675-543c-463e-9612-0881eae5b0a5';
 export {initialCards, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
     editButton, addButton, addBtn, elements, template, popupCard, validationConfigProfile, 
     validationConfigCard, obj, configImage, address, token, groupId, formDelete, btnDelete, 
-    btnDeleteMyCard, likeActive, like, numberOfLikes, formAvatar, validationConfigAvatar, avatar,
+    btnDeleteMyCard, likeActive, like, numberOfLikes, formAvatar, validationConfigAvatar, avatarImage,
     avatarButton, btnSave}

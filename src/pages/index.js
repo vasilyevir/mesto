@@ -9,7 +9,7 @@ import {Api} from '../scripts/Api.js';
 import {formAdd, formEdit, nameChange, jobChange, editButton, addButton, elements, template,
      popupCard, validationConfigProfile, validationConfigCard, obj, configImage, groupId, 
      address, token, formDelete, btnDelete, btnDeleteMyCard, likeActive, like, numberOfLikes,
-     formAvatar, validationConfigAvatar, avatar, avatarButton, btnSave} from '../utils/contants.js'
+     formAvatar, validationConfigAvatar, avatarImage, avatarButton, btnSave} from '../utils/contants.js'
 import '../pages/index.css'
 
 const api = new Api(groupId, address, token);
@@ -17,8 +17,8 @@ const api = new Api(groupId, address, token);
 api.getInformation()
    .then(res => {
         userInfo.setUserInfo(res);
-        console.log(avatar);
-        avatar.src = res.avatar;
+        console.log(avatarImage);
+        avatarImage.src = res.avatar;
     })
     .catch((err)=> console.log(err));
 
@@ -121,32 +121,32 @@ const popupAdd = new PopupWithForm(formAdd, {
             cardsContainer.addItem(card, isArray);
         })
         .catch((err)=> console.log(err))
-        .finally(() =>{renderLoadingPopupCreate(formAdd, 'Сохранение...', false)})
+        .finally(() =>{renderLoadingPopupCreate(formAdd, false)})
     }
 })
 
 const popupAvatar = new PopupWithForm(formAvatar, {
     callback: (data) =>{
-        renderLoadingPopupCreate(formAdd, true);
+        renderLoadingPopupCreate(formAvatar, true);
         api.changeProfile(data).then(res =>{
-            avatar.src = res.avatar;
+            avatarImage.src = res.avatar
         })
         .catch((err)=> console.log(err))
         .finally(()=> {
-            renderLoadingPopupCreate(formAdd, false);
+            renderLoadingPopupCreate(formAvatar, false);
         })
     }
 })
 
 const popupEdit = new PopupWithForm(formEdit,{
     callback: (data) => {
-        renderLoadingPopupCreate(formAdd, true);
+        renderLoadingPopupCreate(formEdit, true);
         api.changeProfile(data).then(res =>{
             userInfo.setUserInfo(res)
         })
         .catch((err)=> console.log(err))
         .finally(()=>{
-            renderLoadingPopupCreate(formAdd, 'Сохранение...', false);
+            renderLoadingPopupCreate(formEdit, false);
         })
     }
 
