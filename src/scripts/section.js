@@ -1,6 +1,6 @@
 export class Section{
     constructor({items, renderer}, selector){
-        this._items = items;
+        // this._items = items;
         this._renderer = renderer;
         this._selector = document.querySelector(selector);
     }
@@ -19,11 +19,11 @@ export class Section{
         } 
       }
   
-    renderer(){
-        this._items.forEach((element) =>{
-            const card = this._renderer(element);
-            const isArray = true;
-            this.addItem(card, isArray)
-        });
-    }
+    // renderer(){
+    //     this._items.forEach((element) =>{
+    //         const card = this._renderer(element);
+    //         const isArray = true;
+    //         this.addItem(card, isArray)
+    //     });
+    // }
 }

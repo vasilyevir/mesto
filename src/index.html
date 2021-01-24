@@ -11,13 +11,15 @@
     </header>
     <section class="profile">
         <div class="profile__information">
-            <img src="<%=require('./images/Custo.png')%>" alt="Логотип" class="profile__image-avatar">
+            <!-- <%=require('./images/Custo.png')%> -->
+            <img src="" alt="Логотип" class="profile__image-avatar">
+            <div class="profile__image-avatar-effects"></div>
             <div class="profile__intro">
                 <div class="profile__top-row">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name"></h1>
                     <button class="profile__btn-edit" type="button"></button>
                 </div>    
-                <p class="profile__job">Исследователь океана</p>
+                <p class="profile__job"></p>
             </div>
         </div>
         <button class="profile__btn-add" type="button"></button>
@@ -32,15 +34,15 @@
                     <span id="name-error" class="popup__error"></span>
                 </div>
                 <div class="popup__input-area">
-                    <input required minlength="2" maxlength="200" type="text" class="popup__input popup__input_value_job" id="job" name="job" value="" placeholder="О себе">
-                    <span id="job-error" class="popup__error"></span>
+                    <input required minlength="2" maxlength="200" type="text" class="popup__input popup__input_value_job" id="about" name="about" value="" placeholder="О себе">
+                    <span id="about-error" class="popup__error"></span>
                 </div>
                 <button class="popup__btn-save" value="Сохранить" type="submit" name="closeEdit">
                     Сохранить
                 </button>
             </form>
         </div>
-    </section>
+    </section> 
     <section class="popup popup_card">
         <div class="popup__window popup__window_type_image">
             <button class="popup__btn-close popup__btn-close_card" type="button"></button>
@@ -49,7 +51,7 @@
                 <p class="popup__text popup__text_type_image"></p>
             </div>
         </div>
-    </section>
+    </section> 
     <section class="popup popup_add">
         <div class="popup__window popup__window_type_form"> 
             <button class="popup__btn-close popup__btn-close_add" type="button"></button>
@@ -68,6 +70,32 @@
                 </button>
             </form>
         </div>
+    </section> 
+    <section class="popup popup_confidence">
+        <div class="popup__window popup__window_type_form">
+            <button class="popup__btn-close popup__btn-close_confidence" type="button"></button>
+            <form class="popup__list popup__list_confidence">
+                <h2 class="popup__text popup__text_type_form">Вы уверены?</h2>
+                <button class="popup__btn-save" value="" type="submit">
+                    Да
+                </button>
+            </form>
+        </div>
+    </section>
+    <section class="popup popup_avatar">
+        <div class="popup__window popup__window_type_form">
+            <button class="popup__btn-close popup__btn-close_avatar" type="button"></button>
+            <form class="popup__list popup__list_avatar">
+                <h2 class="popup__text popup__text_type_form">Обновить аватар</h2>
+                <div class="popup__input-area">
+                    <input required type="url" class="popup__input popup__input_value_url" name="imgAvatar" id="imgAvatar" value="" placeholder="Ссылка на аватарку">
+                    <span id="imgAvatar-error" class="popup__error"></span>
+                </div>
+                <button class="popup__btn-save" value="" type="submit">
+                    Да
+                </button>
+            </form>
+        </div>
     </section>
     <section class="elements">
     </section>
@@ -81,7 +109,10 @@
             <button class="element__btn-delete" type="button"></button>
             <div class="element__footer">
                 <h2 class="element__text"></h2>
-                <button class="element__heart" type="button"></button>
+                <div class="element__like-group">
+                    <button class="element__heart" type="button"></button>
+                    <p class="element__like-number"></p>
+                </div>
             </div>
         </div>
     </template>

@@ -32,6 +32,7 @@ const elementText = '.element__text';
 const elementImage = '.element__image';
 const formAdd = '.popup_add';
 const formEdit = '.popup_edit';
+const formDelete ='.popup_confidence';
 const name = '.profile__name';
 const nameChange = document.querySelector('.popup__input_value_name');
 const nameImage = document.querySelector('.popup__input_value_name-image');
@@ -43,14 +44,30 @@ const addButton = document.querySelector('.profile__btn-add');
 const addBtn = '.profile__btn-add'
 const elements = '.elements';
 const template = '#elements';
+const btnDelete = '.element__btn-delete';
+const btnDeleteMyCard = 'element__btn-delete_my-card';
+const like = '.element__heart';
+const likeActive = 'element__heart_active';
+const numberOfLikes = ".element__like-number";
+const formAvatar = '.popup_avatar';
+const avatar = document.querySelector('.profile__image-avatar');
+const avatarButton = document.querySelector('.profile__image-avatar-effects');
+const btnSave = '.element__btn-delete';
+
+const validationConfigAvatar = {};
+validationConfigAvatar.inputSelector = Array.from(document.querySelector(formAvatar).querySelectorAll('.popup__input')),
+validationConfigAvatar.submitButtonSelector = document.querySelector(formAvatar).querySelector('.popup__btn-save'),
+validationConfigAvatar.inactiveButtonClass = 'popup__btn-save_invalid';
+validationConfigAvatar.inputErrorClass = 'popup__input_state_invalid';
+
+
 const validationConfigProfile = {};
-const validationConfigCard = {};
 validationConfigProfile.inputSelector = Array.from(document.querySelector(formEdit).querySelectorAll('.popup__input')),
 validationConfigProfile.submitButtonSelector = document.querySelector(formEdit).querySelector('.popup__btn-save'),
 validationConfigProfile.inactiveButtonClass = 'popup__btn-save_invalid';
 validationConfigProfile.inputErrorClass = 'popup__input_state_invalid';
 
-
+const validationConfigCard = {};
 validationConfigCard.inputSelector = Array.from(document.querySelector(formAdd).querySelectorAll('.popup__input')),
 validationConfigCard.submitButtonSelector = document.querySelector(formAdd).querySelector('.popup__btn-save'),
 validationConfigCard.inactiveButtonClass = 'popup__btn-save_invalid';
@@ -58,7 +75,7 @@ validationConfigCard.inputErrorClass = 'popup__input_state_invalid';
 
 const obj = {};
 obj.name = '.profile__name';
-obj.job = '.profile__job';
+obj.about = '.profile__job';
 
 const configImage = {};
 configImage.popupText = popupText;
@@ -66,5 +83,13 @@ configImage.popupImage = popupImage;
 configImage.elementText = elementText;
 configImage.elementImage = elementImage;
 
+const groupId = 'cohort-19';
+const address = `https://mesto.nomoreparties.co/v1/${groupId}`;
+const token = 'ff772675-543c-463e-9612-0881eae5b0a5';
+
+
 export {initialCards, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard, validationConfigProfile, validationConfigCard, obj, configImage}
+    editButton, addButton, addBtn, elements, template, popupCard, validationConfigProfile, 
+    validationConfigCard, obj, configImage, address, token, groupId, formDelete, btnDelete, 
+    btnDeleteMyCard, likeActive, like, numberOfLikes, formAvatar, validationConfigAvatar, avatar,
+    avatarButton, btnSave}

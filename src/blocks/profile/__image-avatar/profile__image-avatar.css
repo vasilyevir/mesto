@@ -4,3 +4,8 @@
     border-radius: 60px;
     margin: 0 auto;
 }
+
+.profile__image-avatar:hover{
+    background-image: url(../../../images/Vector.svg);
+    background: rgba(0, 0, 0, 0.8);
+}

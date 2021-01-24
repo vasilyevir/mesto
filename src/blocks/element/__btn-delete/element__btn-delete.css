@@ -2,7 +2,7 @@
     position: absolute;
     background-image: url(../../../images/Trashcan.svg);
     width: 18px;
-    height: 20px;
+    height: 0px;
     top: 18px;
     right: 15px;
     background-size: contain;
@@ -11,4 +11,5 @@
     border: none;
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
+    opacity: 0;
 }
