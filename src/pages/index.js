@@ -1,16 +1,18 @@
 import {Card}  from '../scripts/Card.js';
 import {Popup} from '../scripts/Popup.js'
 import {PopupWithForm} from '../scripts/PopupWithForm.js';
+import {PopupWithDelete} from '../scripts/PopupWithDelete.js';
 import PopupWithImage from '../scripts/PopupWithImage.js';
 import UserInfo from '../scripts/UserInfo.js'
 import {Section} from '../scripts/section.js';
 import {FormValidator} from '../scripts/FormValidator.js';
 import {Api} from '../scripts/Api.js';
 import {formAdd, formEdit, nameChange, jobChange, editButton, addButton, elements, template,
-     popupCard, validationConfigProfile, validationConfigCard, obj, configImage, groupId, 
+     popupCard, validationConfigCard, obj, configImage, groupId, validationConfigProfile,
      address, token, formDelete, btnDelete, btnDeleteMyCard, likeActive, like, numberOfLikes,
-     formAvatar, validationConfigAvatar, avatarImage, avatarButton, btnSave} from '../utils/contants.js'
-import '../pages/index.css'
+     formAvatar, validationConfigAvatar, avatarImage, avatarButton, btnSave} from '../utils/contants.js';
+     
+import '../pages/index.css';
 
 const api = new Api(groupId, address, token);
 
@@ -56,12 +58,11 @@ formValidatorAvatar.enableValidation();
 
 const popupImage = new PopupWithImage(popupCard, configImage);
 
-const renderLoadingPopupCreate = (form ,isLoading) => {
-    const textBefore = document.querySelector(form).querySelector(btnSave).textContent
+const renderLoadingPopupCreate = (form ,isLoading, textBefore) => {
     if (isLoading) {
         document.querySelector(form).querySelector(btnSave).textContent = 'Сохранение...';
     } else {
-        formButton.textContent = textBefore;
+        document.querySelector(form).querySelector(btnSave).textContent = textBefore;
     }
 }
 
@@ -95,8 +96,8 @@ const createCard = (element) => {
             } else {
                 api.deleteLike(listItem.getId())
                    .then(res =>{
-                    card.querySelector(numberOfLikes).textContent = res.likes.length;
-                    card.querySelector(like).classList.remove(likeActive);
+                        card.querySelector(numberOfLikes).textContent = res.likes.length;
+                        card.querySelector(like).classList.remove(likeActive);
                    }) 
                     .catch((err)=> console.log(err))
                 
@@ -110,7 +111,8 @@ const userInfo = new UserInfo(obj);
 
 const popupAdd = new PopupWithForm(formAdd, {
     callback: (data) => {
-        renderLoadingPopupCreate(formAdd, true);
+        const textBefore = document.querySelector(formAdd).querySelector(btnSave).textContent
+        renderLoadingPopupCreate(formAdd, true, textBefore);
         const val = {};
         val.name = data.nameCard;
         val.link = data.imgCard;
@@ -121,32 +123,36 @@ const popupAdd = new PopupWithForm(formAdd, {
             cardsContainer.addItem(card, isArray);
         })
         .catch((err)=> console.log(err))
-        .finally(() =>{renderLoadingPopupCreate(formAdd, false)})
+        .finally(() =>{renderLoadingPopupCreate(formAdd, false, textBefore)})
     }
 })
 
 const popupAvatar = new PopupWithForm(formAvatar, {
     callback: (data) =>{
-        renderLoadingPopupCreate(formAvatar, true);
-        api.changeProfile(data).then(res =>{
+        const textBefore = document.querySelector(formAvatar).querySelector(btnSave).textContent
+        renderLoadingPopupCreate(formAvatar, true, textBefore);
+        console.log(data.imgAvatar);
+        api.changeAvatar(data.imgAvatar).then(res =>{
+            console.log(res.avatar);
             avatarImage.src = res.avatar
         })
         .catch((err)=> console.log(err))
         .finally(()=> {
-            renderLoadingPopupCreate(formAvatar, false);
+            renderLoadingPopupCreate(formAvatar, false, textBefore);
         })
     }
 })
 
 const popupEdit = new PopupWithForm(formEdit,{
     callback: (data) => {
-        renderLoadingPopupCreate(formEdit, true);
+        const textBefore = document.querySelector(formEdit).querySelector(btnSave).textContent
+        renderLoadingPopupCreate(formEdit, true, textBefore);
         api.changeProfile(data).then(res =>{
             userInfo.setUserInfo(res)
         })
         .catch((err)=> console.log(err))
         .finally(()=>{
-            renderLoadingPopupCreate(formEdit, false);
+            renderLoadingPopupCreate(formEdit, false, textBefore);
         })
     }
 
@@ -160,14 +166,17 @@ const cardsContainer = new Section({
 
 
 function openAddPopup(){
+    formValidatorCard.resetValidation()
     popupAdd.openPopup();
 }
 
 function openAvatarPopup(){
+    formValidatorAvatar.resetValidation();
     popupAvatar.openPopup();
 }
 
 function openEditPopup() {
+    formValidatorProfile.resetValidation();
     popupEdit.openPopup();
     userInfo.getUserInfo(obj);
     nameChange.setAttribute('value', userInfo.getUserInfo(obj).name);
@@ -176,6 +185,7 @@ function openEditPopup() {
 
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();
+popupAvatar.setEventListeners();
 avatarButton.addEventListener('click', openAvatarPopup);
 addButton.addEventListener('click', openAddPopup);
 editButton.addEventListener('click', openEditPopup);

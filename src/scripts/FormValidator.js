@@ -20,6 +20,15 @@ _hideError(formElement, input) {
     input.classList.remove(this._inputErrorClass);
 }
 
+resetValidation() {
+    this._inputSelector.forEach((inputElement) => {
+        // console.log(inputElement)
+      this._hideError(this._popupOpen ,inputElement)
+    });
+
+    this._toggleButtonState(this._popupOpen, this._submitButtonSelector);
+  }
+
 _checkInputValidity(formElement, input) {
     if (input.checkValidity()) {
         this._hideError(formElement, input);

@@ -54,18 +54,17 @@ const avatarImage = document.querySelector('.profile__image-avatar');
 const avatarButton = document.querySelector('.profile__image-avatar-effects');
 const btnSave = '.popup__btn-save';
 
-const validationConfigAvatar = {};
-validationConfigAvatar.inputSelector = Array.from(document.querySelector(formAvatar).querySelectorAll('.popup__input')),
-validationConfigAvatar.submitButtonSelector = document.querySelector(formAvatar).querySelector('.popup__btn-save'),
-validationConfigAvatar.inactiveButtonClass = 'popup__btn-save_invalid';
-validationConfigAvatar.inputErrorClass = 'popup__input_state_invalid';
-
-
 const validationConfigProfile = {};
 validationConfigProfile.inputSelector = Array.from(document.querySelector(formEdit).querySelectorAll('.popup__input')),
 validationConfigProfile.submitButtonSelector = document.querySelector(formEdit).querySelector('.popup__btn-save'),
 validationConfigProfile.inactiveButtonClass = 'popup__btn-save_invalid';
 validationConfigProfile.inputErrorClass = 'popup__input_state_invalid';
+
+const validationConfigAvatar = {};
+validationConfigAvatar.inputSelector = Array.from(document.querySelector(formAvatar).querySelectorAll('.popup__input')),
+validationConfigAvatar.submitButtonSelector = document.querySelector(formAvatar).querySelector('.popup__btn-save'),
+validationConfigAvatar.inactiveButtonClass = 'popup__btn-save_invalid';
+validationConfigAvatar.inputErrorClass = 'popup__input_state_invalid';
 
 const validationConfigCard = {};
 validationConfigCard.inputSelector = Array.from(document.querySelector(formAdd).querySelectorAll('.popup__input')),
@@ -89,7 +88,7 @@ const token = 'ff772675-543c-463e-9612-0881eae5b0a5';
 
 
 export {initialCards, formAdd, formEdit, name, nameChange, nameImage, job, urlImage, jobChange,
-    editButton, addButton, addBtn, elements, template, popupCard, validationConfigProfile, 
+    editButton, addButton, addBtn, elements, template, popupCard, validationConfigProfile,
     validationConfigCard, obj, configImage, address, token, groupId, formDelete, btnDelete, 
     btnDeleteMyCard, likeActive, like, numberOfLikes, formAvatar, validationConfigAvatar, avatarImage,
     avatarButton, btnSave}

@@ -26,6 +26,7 @@ class PopupWithForm extends Popup{
 
     setEventListeners(){
         super.setEventListeners();
+        console.log(this._popup);
         this._popupList.addEventListener('submit',(evt) => {
             evt.preventDefault();
             const obj = {};
