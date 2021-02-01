@@ -12,7 +12,7 @@ import {formAdd, formEdit, nameChange, jobChange, editButton, addButton, element
      address, token, formDelete, btnDelete, btnDeleteMyCard, likeActive, like, numberOfLikes,
      formAvatar, validationConfigAvatar, avatarButton, btnSave} from '../utils/contants.js';
      
-import '../pages/index.css';
+import './index.css';
 
 const api = new Api(groupId, address, token);
 let usreId;

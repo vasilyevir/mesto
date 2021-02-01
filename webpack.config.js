@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
-  entry: './src/pages/index.js',
+  entry: './src/components/index.js',
   output: {
     publicPath: '/',
     filename: 'main.js',
@@ -14,7 +14,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     open: true,
-    port: 7777
+    port: 7770
   },
   module: {
     rules: [
