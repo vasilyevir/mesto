@@ -93,38 +93,56 @@ export class Api{
         })
     }
 
-    postLike(cardId){
-        return fetch(`${this._address}/cards/likes/${cardId}`, {
-            method: 'PUT',
-            headers: {
-                authorization : this._token,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((res) => {
-            if (res.ok){
-                return res.json();
-            }
+    postLike(cardId, isLiked){
+        if (isLiked) {
+            // console.log(cardId);
+            return fetch(`${this._address}/cards/likes/${cardId}`, {
+                method: 'PUT',
+                headers: {
+                    authorization : this._token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((res) => {
+                if (res.ok){
+                    return res.json();
+                }
 
-        return Promise.reject(`Ошибка: ${res.status}`);
-        })
+            return Promise.reject(`Ошибка: ${res.status}`);
+            })
+        } else {
+            // console.log(cardId);
+            return fetch(`${this._address}/cards/likes/${cardId}`,{
+                method: 'DELETE',
+                headers: {
+                    authorization : this._token
+                }
+            })
+            .then((res) => {
+                if (res.ok){
+                    return res.json();
+                }
+    
+            return Promise.reject(`Ошибка: ${res.status}`);
+            })
+        }
     }
 
-    deleteLike(cardId){
-        return fetch(`${this._address}/cards/likes/${cardId}`,{
-            method: 'DELETE',
-            headers: {
-                authorization : this._token
-            }
-        })
-        .then((res) => {
-            if (res.ok){
-                return res.json();
-            }
+    // deleteLike(cardId){
+    //     return fetch(`${this._address}/cards/likes/${cardId}`,{
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization : this._token
+    //         }
+    //     })
+    //     .then((res) => {
+    //         if (res.ok){
+    //             return res.json();
+    //         }
 
-        return Promise.reject(`Ошибка: ${res.status}`);
-        })
-    }
+    //     return Promise.reject(`Ошибка: ${res.status}`);
+    //     })
+    // }
     
     changeAvatar(link){
         return fetch(`${this._address}/users/me/avatar`,{

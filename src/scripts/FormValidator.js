@@ -1,10 +1,10 @@
 export class FormValidator {
-    constructor(popupOpen, data){
-        this._inputSelector = data.inputSelector,
-        this._submitButtonSelector = data.submitButtonSelector,
+    constructor(formSelector, data){
+        this._inputList = data.inputList,
+        this._submitButton = data.submitButton,
         this._inactiveButtonClass = data.inactiveButtonClass,
         this._inputErrorClass = data.inputErrorClass,
-        this._popupOpen = document.querySelector(popupOpen).querySelector('.popup__list')
+        this._form = document.querySelector(formSelector).querySelector('.popup__list')
     }
     
 _showError(formElement, input) {
@@ -21,12 +21,12 @@ _hideError(formElement, input) {
 }
 
 resetValidation() {
-    this._inputSelector.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
         // console.log(inputElement)
-      this._hideError(this._popupOpen ,inputElement)
+      this._hideError(this._form ,inputElement)
     });
 
-    this._toggleButtonState(this._popupOpen, this._submitButtonSelector);
+    this._toggleButtonState(this._form, this._submitButton);
   }
 
 _checkInputValidity(formElement, input) {
@@ -37,31 +37,31 @@ _checkInputValidity(formElement, input) {
     }
 }
 
-_toggleButtonState(formElement, buttonElement) {
-    if (formElement.checkValidity()) {
-        buttonElement.classList.remove(this._inactiveButtonClass);
-        buttonElement.disabled = false;
+_toggleButtonState() {
+    if (this._form.checkValidity()) {
+        this._submitButton.classList.remove(this._inactiveButtonClass);
+        this._submitButton.disabled = false;
     } else {
-        buttonElement.classList.add(this._inactiveButtonClass);
-        buttonElement.disabled = true;
+        this._submitButton.classList.add(this._inactiveButtonClass);
+        this._submitButton.disabled = true;
     }
 }
 
 _setEventListener() {
 
-    this._inputSelector.forEach((input) =>{
+    this._inputList.forEach((input) =>{
         input.addEventListener('input', (evt)=>{
-            this._checkInputValidity(this._popupOpen, evt.target);
-            this._toggleButtonState(this._popupOpen, this._submitButtonSelector);
+            this._checkInputValidity(this._form, evt.target);
+            this._toggleButtonState(this._form, this._submitButton);
         });
     });
 
-    this._toggleButtonState(this._popupOpen, this._submitButtonSelector);
+    this._toggleButtonState();
 }
 
 enableValidation(){
-    if (this._popupOpen){
-    this._popupOpen.addEventListener('submit', (evt) => {
+    if (this._form){
+    this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
 

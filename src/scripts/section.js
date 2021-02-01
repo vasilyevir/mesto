@@ -2,7 +2,7 @@ export class Section{
     constructor({items, renderer}, selector){
         // this._items = items;
         this._renderer = renderer;
-        this._selector = document.querySelector(selector);
+        this._container = document.querySelector(selector);
     }
 
 
@@ -13,9 +13,9 @@ export class Section{
 
     addItem(element, isArray) { 
         if (isArray) { 
-            this._selector.append(element); 
+            this._container.append(element); 
         } else { 
-            this._selector.prepend(element); 
+            this._container.prepend(element); 
         } 
       }
   

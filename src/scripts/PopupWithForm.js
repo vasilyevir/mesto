@@ -1,33 +1,36 @@
 import {Popup} from './Popup.js';
 
 class PopupWithForm extends Popup{
-    constructor(selector, {callback}){
+    constructor(selector, btnSave, {callback}){
         super(selector);
         this._callback = callback;
-        this._popupList = this._popup.querySelector('.popup__list');
+        this._form = this._popup.querySelector('.popup__list');
+        this._inputList = this._popup.querySelectorAll('.popup__input');
+        this._buttonText = this._popup.querySelector(btnSave).textContent;
     }
 
     closePopup(){
         super.closePopup();
-        const buttonElement = this._popupList.querySelector('.popup__btn-save');
-        buttonElement.classList.add('popup__btn-save_invalid');
-        buttonElement.disabled = true;
-        this._popupList.reset();
+        this._form.reset();
     }
 
     _getInputValues(obj){
-        const val = this._popup.querySelectorAll('.popup__input');
-        val.forEach(element => {
+        this._inputList.forEach(element => {
             const name = element.name;
             const value = element.value;
             obj[name] = value;
         });
     }
 
+    buttonText(){
+        // console.log(this._buttonText);
+        return this._buttonText;
+    }
+
     setEventListeners(){
         super.setEventListeners();
         console.log(this._popup);
-        this._popupList.addEventListener('submit',(evt) => {
+        this._form.addEventListener('submit',(evt) => {
             evt.preventDefault();
             const obj = {};
             this._getInputValues(obj);
