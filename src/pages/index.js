@@ -34,34 +34,7 @@ api.getCards()
     })
     .catch((err)=>{console.log(err)})
  
-
- 
-
-// api.getCards()
-//    .then(res => {
-//         res.forEach(element => {
-//         const card = createCard(element);
-//         card.querySelector(numberOfLikes).textContent = element.likes.length;
-
-//             if (usreId === element.owner._id){    
-//                 card.querySelector(btnDelete).classList.add(btnDeleteMyCard);
-//             }
-//             element.likes.forEach(user => {
-//                 if (user._id === usreId){
-//                     card.querySelector(like).classList.add(likeActive);
-//                 }
-//             })
-//             .catch((err)=> console.log(err))
-//         })
-//         .catch((err)=>{console.log(err)})
-//         const isArray = true;
-//         cardsContainer.addItem(card, isArray);
-//        })
-const popupDelete = new PopupWithDelete(formDelete
-    // setSubmitAction(action) => {
-    //     this._handleSubmitCallback = action;
-    // }
-);
+const popupDelete = new PopupWithDelete(formDelete);
 
 const formValidatorProfile = new FormValidator(formEdit, validationConfigProfile);
 formValidatorProfile.enableValidation();
@@ -112,7 +85,6 @@ const renderLoadingPopupCreate = (form ,isLoading, textBefore) => {
 
 const popupAdd = new PopupWithForm(formAdd, btnSave, {
     callback: (data) => {
-        // const textBefore = document.querySelector(formAdd).querySelector(btnSave).textContent
         renderLoadingPopupCreate(formAdd, true, popupAdd.buttonText());
         const val = {};
         val.name = data.nameCard;
@@ -120,7 +92,6 @@ const popupAdd = new PopupWithForm(formAdd, btnSave, {
         const isArray = false;
         api.postCard(val).then(res => {
             const card = createCard(res);
-            // card.querySelector(btnDelete).classList.add(btnDeleteMyCard);
             cardsContainer.addItem(card, isArray);
         })
         .catch((err)=> console.log(err))
@@ -130,7 +101,6 @@ const popupAdd = new PopupWithForm(formAdd, btnSave, {
 
 const popupAvatar = new PopupWithForm(formAvatar, btnSave, {
     callback: (data) =>{
-        // const textBefore = document.querySelector(formAvatar).querySelector(btnSave).textContent
         renderLoadingPopupCreate(formAvatar, true, popupAvatar.buttonText());
         console.log(data.imgAvatar);
         api.changeAvatar(data.imgAvatar).then(res =>{

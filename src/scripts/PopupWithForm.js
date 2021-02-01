@@ -23,7 +23,6 @@ class PopupWithForm extends Popup{
     }
 
     buttonText(){
-        // console.log(this._buttonText);
         return this._buttonText;
     }
 

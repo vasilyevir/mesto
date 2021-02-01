@@ -50,7 +50,6 @@ const like = '.element__heart';
 const likeActive = 'element__heart_active';
 const numberOfLikes = ".element__like-number";
 const formAvatar = '.popup_avatar';
-// const avatarImage = document.querySelector('.profile__image-avatar');
 const avatarButton = document.querySelector('.profile__image-avatar-effects');
 const btnSave = '.popup__btn-save';
 
