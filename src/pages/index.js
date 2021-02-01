@@ -102,10 +102,8 @@ const popupAdd = new PopupWithForm(formAdd, btnSave, {
 const popupAvatar = new PopupWithForm(formAvatar, btnSave, {
     callback: (data) =>{
         renderLoadingPopupCreate(formAvatar, true, popupAvatar.buttonText());
-        console.log(data.imgAvatar);
         api.changeAvatar(data.imgAvatar).then(res =>{
-            console.log(res.avatar);
-            avatarImage.src = res.avatar
+            userInfo.setUserInfo(res);
         })
         .catch((err)=> console.log(err))
         .finally(()=> {

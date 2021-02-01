@@ -7,7 +7,6 @@ export class Popup{
     closePopup(){
         this._popup.classList.remove('popup_is-opened');
         document.removeEventListener('keydown', this._escForm);
-        this._popup.querySelector('.popup__btn-close').removeEventListener('click',this.closePopup.bind(this))
     }   
     
     openPopup(){
