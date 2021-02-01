@@ -66,6 +66,7 @@ const createCard = (element) => {
         handleLikeClick: (card)=>{
             api.postLike(listItem.getId(), !listItem.isLiked(card))
                 .then(data => {
+                    console.log(data);
                     listItem.setLikesInfo(data);
                 })
         }

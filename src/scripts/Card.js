@@ -3,6 +3,7 @@ export class Card{
         this._text = data.name;
         this._link = data.link;
         this._id = data._id;
+        this._infoCard = data;
         this._ownerId = data.owner._id;
         this._template = document.querySelector(templateSelector).content;
         this._usreId = userId;
@@ -34,7 +35,11 @@ export class Card{
 
     setLikesInfo(res){
         this._content.querySelector(this._numberOfLikes).textContent = res.likes.length;
-        this._content.querySelector(this._like).classList.toggle(this._likeActive);
+        if(this._ownerId === this._usreId){
+            this._content.querySelector(this._like).classList.add(this._likeActive);
+        } else {
+            this._content.querySelector(this._like).classList.remove(this._likeActive);
+        }
     }
 
     _getTemplate(){
@@ -70,7 +75,7 @@ export class Card{
         this._image.alt = this._text;
         this._content
         .querySelector('.element__text').textContent = this._text;
-        
+        this.setLikesInfo(this._infoCard);
         this._setEventListener();
         return this._content;
     }
