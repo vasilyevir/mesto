@@ -54,20 +54,21 @@ const createCard = (element) => {
             popupImage.openPopup(text, link);
             popupImage.setEventListeners();
         },
-        handleDeleteButtonClick: () => {
-            popupDelete.setSubmitAction(() =>{
-                api.deleteCard(listItem._id)
-                    .then(()=>listItem.removeCard())
-                    .catch((err)=> console.log(`Ошибка при удаление:${err}`))
-            })
+        handleDeleteButtonClick: (card) => {
             popupDelete.openPopup();
-            popupDelete.setEventListeners();
+            popupDelete.setSubmitAction(() =>{
+                api.deleteCard(card._id)
+                    .then((res)=>{
+                        listItem.removeCard()
+                    })
+                    .catch((err)=> console.log(`Ошибка при удаление: ${err}`))
+            })
+            // popupDelete.setEventListeners();
         },
         handleLikeClick: (card)=>{
             api.postLike(listItem.getId(), !listItem.isLiked(card))
                 .then(data => {
-                    console.log(data);
-                    listItem.setLikesInfo(data);
+                    listItem.changeLikesInfo(data);
                 })
         }
     });
@@ -157,6 +158,7 @@ function openEditPopup() {
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();
 popupAvatar.setEventListeners();
+popupDelete.setEventListeners();
 avatarButton.addEventListener('click', openAvatarPopup);
 addButton.addEventListener('click', openAddPopup);
 editButton.addEventListener('click', openEditPopup);

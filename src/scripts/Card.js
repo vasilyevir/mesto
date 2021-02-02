@@ -6,7 +6,7 @@ export class Card{
         this._infoCard = data;
         this._ownerId = data.owner._id;
         this._template = document.querySelector(templateSelector).content;
-        this._usreId = userId;
+        this._userId = userId;
         this._like = like;
         this._likeActive =likeActive;
         this._numberOfLikes = numberOfLikes;
@@ -35,11 +35,16 @@ export class Card{
 
     setLikesInfo(res){
         this._content.querySelector(this._numberOfLikes).textContent = res.likes.length;
-        if(this._ownerId === this._usreId){
-            this._content.querySelector(this._like).classList.add(this._likeActive);
-        } else {
-            this._content.querySelector(this._like).classList.remove(this._likeActive);
-        }
+        res.likes.forEach((element)=>{
+            if (element._id == this._userId){
+                this._content.querySelector(this._like).classList.add(this._likeActive);
+            }
+        })
+    }
+
+    changeLikesInfo(res){
+        this._content.querySelector(this._numberOfLikes).textContent = res.likes.length;
+        this._content.querySelector(this._like).classList.toggle(this._likeActive);
     }
 
     _getTemplate(){
@@ -51,11 +56,11 @@ export class Card{
         this._image
         .addEventListener('click',() =>{
             this._handleCardClick(this._text, this._link)
-            console.log(this._id, this._usreId)
+            // console.log(this._id, this._usreId)
         });
 
 
-        if (this._ownerId === this._usreId){
+        if (this._ownerId === this._userId){
             this._content
             .querySelector('.element__btn-delete')
             .addEventListener('click',() => this._handleDeleteButtonClick(this));
